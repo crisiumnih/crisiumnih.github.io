@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide-react@0.263.1/dist/lucide.min.js"></script>
+
+  <title>projects</title>
+  <style>
+    body {
+      background-color: #353340;
+      color: #ffffff;
+      font-family: 'Fira Code', monospace;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 80%;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+    }
+    
+        
+        h2 {
+          color: limegreen;
+            
+            margin-bottom: 20px;
+        }
+
+    hr {
+      border: 0;
+      height: 1px;
+      background-color: rgb(255, 102, 204);
+      width: 100%;
+      margin-top: 15px;
+    }
+
+    .project-card {
+      background-color: #494759;
+      padding: 20px;
+      margin-bottom: 20px;
+      text-align: left;
+      border-radius: 5px;
+    }
+
+    .project-card h2 {
+      color: #FF66CC;
+      margin-top: 0;
+    }
+
+    .project-card p {
+      line-height: 1.5;
+    }
+
+    .project-card .links {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .project-card a {
+      color: #70FFAD;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .project-card a:hover {
+      text-decoration: underline;
+    }
+
+    .project-card a svg {
+      margin-left: 5px;
+    }
+
+    .back-link {
+      color: #70FFAD;
+      text-decoration: none;
+      display: block;
+      margin-top: 20px;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>me projects</h1>
+    <hr>
+
+    <div class="project-card">
+      <h2>lqr balancer</h2>
+      <p>implemented lqr control on 2 wheeled bot.</p>
+      <div class="links">
+        <a href="./projects/lqr.html">view project</a>
+        <a href="./blogs/1_lqr.html">read blog</a>
+        <a href="https://github.com/crisiumnih/LQR_Balancer" target="_blank">github <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#70FFAD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+      </div>
+    </div>
+
+    <!-- <div class="project-card">
+      <h2>Robotic Arm Controller</h2>
+      <p>Developed a control system for a robotic arm using a Raspberry Pi and Python. The project includes a user interface for controlling the arm's movements.</p>
+      <div class="links">
+        <a href="/robotic-arm.html">View Project</a>
+        <a href="https://github.com/crisiumnih/robotic-arm-controller" target="_blank">GitHub <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#70FFAD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+      </div>
+    </div> -->
+
+    <!-- <div class="project-card">
+      <h2>Autonomous Vehicle</h2>
+      <p>Built an autonomous vehicle prototype using ROS (Robot Operating System) and various sensors. The vehicle can navigate through environments and avoid obstacles.</p>
+      <div class="links">
+        <a href="/autonomous-vehicle.html">View Project</a>
+        <a href="https://github.com/crisiumnih/autonomous-vehicle" target="_blank">GitHub <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#70FFAD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+      </div>
+    </div> -->
+
+    <a href="./index.html" class="back-link">&lt; Back to Home</a>
+  </div>
+</body>
+
+</html>

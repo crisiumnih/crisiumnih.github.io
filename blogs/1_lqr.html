@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>
+  <title>blogs</title>
+  <style>
+    body {
+      background-color: #353340;
+      color: #ffffff;
+      font-family: 'Fira Code', monospace;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 60%;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: left;
+      overflow: hidden;
+    }
+
+    hr {
+      border: 0;
+      height: 1px;
+      background-color: rgb(255, 102, 204);
+      width: 100%;
+      margin-top: 15px;
+    }
+
+    h1 {
+      color: #FF66CC;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      color: limegreen;
+
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      color: #70FFAD;
+
+      margin-bottom: 20px;
+    }
+
+    h4 {
+      color: #ff66cccf;
+
+      margin-bottom: 20px;
+    }
+
+
+
+    .dark-green {
+      color: limegreen;
+    }
+
+
+    .back-link {
+      color: #70FFAD;
+      text-decoration: none;
+      display: block;
+      margin-top: 20px;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      /* Spread content horizontally */
+      align-items: center;
+      padding: 10px;
+      text-align: left;
+    }
+
+    /* Make sure the date and git link both align to the top-left properly */
+    .date,
+    git {
+      display: inline-block;
+      vertical-align: top;
+      /* Align both elements to the top */
+      text-align: left;
+    }
+
+    git {
+      margin-left: 20px;
+      /* Optional: Adds spacing between the date and git link */
+      text-align: left;
+    }
+
+    .git-link {
+      color: #70FFAD;
+      font-size: em;
+      text-decoration: none;
+    }
+
+    .git-link:hover {
+      text-decoration: underline;
+    }
+
+
+
+    /* Existing CSS remains the same */
+
+    .blog-content img {
+      display: block;
+      margin: 20px auto;
+      /* Centers the image and adds space around it */
+      max-width: 100%;
+      /* Ensures the image doesn't exceed the container's width */
+      height: auto;
+      /* Maintains aspect ratio */
+    }
+
+    figure {
+      text-align: center;
+      /* Centers the entire figure element */
+      margin: 20px auto;
+    }
+
+    figure img {
+      display: inline-block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    figure figcaption {
+      margin-top: 10px;
+      font-size: 0.9em;
+      color: #FF66CC;
+      /* Optional: Style the caption */
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <!-- Header content -->
+      <div class="date">
+        <!-- Use JavaScript or server-side code to dynamically insert the current date -->
+        July 27, 2024
+      </div>
+      <git>
+
+        <a href="https://github.com/crisiumnih/LQR_Balancer" class="git-link">github</a>
+
+
+      </git>
+
+    </header>
+
+    <main>
+      <!-- Other portfolio content -->
+
+      <!-- Blog section -->
+      <section id="blog">
+        <!-- Paste the Pandoc-generated HTML content here -->
+        <h1>Building a Two-Wheeled Balancer with LQR Control</h1>
+        <br>
+        <br>
+        <h2 id="blog-content">About the Project</h2>
+        <p>
+          Our aim is to design a two-wheeled balancer, and program a
+          self-balancing robot that uses LQR control to maintain its upright
+          position. The project integrates concepts from linear algebra, state
+          space equations, Lagrangian mechanics, and control theory, along with
+          3D modeling, MATLAB simulations, and stepper motor control with
+          ESP-IDF.
+        </p>
+        <h2 id="lagrangian-mechanics">Lagrangian Mechanics</h2>
+        <p>
+          Instead of focusing on forces and Newton’s laws, Lagrangian mechanics
+          uses the Lagrangian function,
+          <span class="math inline">\({L}\)</span>, which is the difference
+          between the kinetic energy <span class="math inline">\(T\)</span> and
+          potential energy <span class="math inline">\(V\)</span> of a system:
+          <br />
+          <span class="math display">\[\qquad \qquad L=T-V \]</span>
+        </p>
+        <p>
+          The Lagrangian approach is better because we don’t need to know the
+          forces but just the constraints and we can straightforwardly use any
+          type of coordinates we want as long as they describe the system.
+          Equations of motion are obtained by using <br />
+          <br />
+          <span class="math display">\[\qquad \qquad \frac{d}{dt}\left(\frac{\partial L}{\partial
+            \dot{q}_i}\right)-\frac{\partial L}{\partial q_i} =0 \]</span>
+        </p>
+        <h2 id="control-system">Control System</h2>
+        <p>
+          Control means to regulate or direct. Thus, a control system is the
+          interconnection of various physical elements connected in a way to
+          regulate or direct itself or the other system. ### State Space System
+          A system to be controlled is described as <br />
+          <span class="math display">\[\qquad \qquad\dot{x}=Ax+Bu\]</span>
+          <br />
+        </p>
+        <p>
+          Where <span class="math inline">\(x=\)</span> state variables,
+          <span class="math inline">\(\dot{x}=\)</span> rate of change of state
+          variables, <span class="math inline">\(u\)</span> is the input by
+          actuator, matrix <span class="math inline">\(A\)</span> describes how
+          the state variables interact and
+          <span class="math inline">\(B\)</span> describes how inputs
+          <span class="math inline">\(u\)</span> affect the state. <br />
+          <span class="math display">\[\qquad \qquad y=Cx+Du\]</span> <br />
+        </p>
+        <p>
+          <span class="math inline">\(y\)</span> is the output vector,
+          <span class="math inline">\(C\)</span> is a matrix that maps the state
+          variables to the outputs, and
+          <span class="math inline">\(D\)</span> describes how the inputs
+          directly affect the outputs. <br />
+          This representation allows us to model and analyze the system.
+        </p>
+        <h2 id="lqr-control">LQR control</h3>
+          <p>
+            Now we know how to represent a system to be controlled. LQR stands for
+            Linear Quadratic Control, as the name suggests it tries to minimize
+            the quadratic cost function of a linear system. Here, <br />
+            <span class="math display">\[\qquad \qquad J=\displaystyle \int_{0}^{ \infty } (x^TQx+u^TRu)
+              dt\]</span>
+            <br />
+            <br />
+            is our cost function. Where,
+            <span class="math inline">\(Q\)</span> positive matrix that penalizes
+            state error, and <span class="math inline">\(R\)</span> penalizes
+            control effort. <br />
+            Optimal control effort is obtained by using
+            <span class="math display">\[u=-Kx\]</span> For that
+            <span class="math inline">\(K\)</span> is the gain matrix given by
+            <span class="math inline">\(R^{-1}B^TP\)</span> and
+            <span class="math inline">\(P\)</span> is solution of Algebraic
+            Riccati equation <br />
+            <br />
+            <span class="math display">\[\qquad \qquad A^TP+PA-PBR^{-1}B^TP+Q=0\]</span>
+            <br />
+            <br />
+            Uff, enough maths let’s get to implementaion.
+          </p>
+          <h2 id="implementation-in-matlab">Implementation in MATLAB</h2>
+          <p>
+            Let’s try to model an inverse pendulum on a cart using LQR control
+            <br />
+          <figure>
+            <img src="./assests/FBD2.png" alt="FBD2" />
+            <figcaption aria-hidden="true">FBD</figcaption>
+          </figure>
+          </p>
+          <p>
+            Using Lagrangian the equations obtained is -&gt; <br />
+            <br />
+            <span class="math display">\[\qquad \qquad L=\frac{1}{2}\dot{x}^2(M+m)+\frac{1}{2}m(
+              l^2\dot{\theta}^2+2l\dot{x}\dot{\theta}cos(\theta) ) \]</span>
+            <br />
+            <br />
+            Note that these equations are Non-Linear, to linearize them we must
+            consider an equilibrium point(be it a stable or unstable). Supposing
+            that point to be when <span class="math inline">\(x=0\)</span> and
+            <span class="math inline">\(\theta=0\)</span>.<br />By applying Euler
+            Lagrange equation, <br />
+            <br />
+            <span class="math display">\[\qquad \qquad \displaylines{ (M+m)\ddot{x}+ml\ddot{\theta}=u \\
+              l\ddot{\theta} + \ddot{x}-g\theta=0}\]</span>
+            <br />
+            <br />
+            As a proud engineer, we should consider approximations such as
+            <span class="math inline">\(cos\theta\)</span> -&gt;<span class="math inline">\(1\)</span>
+            and <span class="math inline">\(sin\theta\)</span> -&gt;<span class="math inline">\(\theta\)</span>. <br />
+            Now we can model this system in MATLAB. For that
+            <span class="math inline">\(A\)</span> matrix in state space equation
+            is our jacobian matrix w.r.t state variables and
+            <span class="math inline">\(B\)</span> matrix is jacobian matrix w.r.t
+            actuator variables.
+          </p>
+          <h4
+            id="my-state-variables-here-are-x-quad-theta-quad-dotx-quad-dottheta-initial-position-being-x2-rest-are-zero-and-final-position-is-x-2.">
+            My state variables here are
+            <span class="math inline">\([x \quad \theta \quad \dot{x} \quad \dot{\theta}]\)</span>
+            , initial position being <span class="math inline">\(x=2\)</span> ,
+            rest are zero and final position is
+            <span class="math inline">\(x=-2\)</span>.
+          </h4>
+          <p>
+            Hence, the cart tries to adjust itself such that it achieves the final
+            position of x=-2 with balancing the pendulum.
+          </p>
+          <p><br /></p>
+          <p>
+            Putting all this in MATLAB and simulating gives us such controlled
+            output
+          </p>
+          <figure>
+            <p><img src="./assests/inverted.gif" alt="inverted" /> <br /></p>
+            <figcaption aria-hidden="true">Inverted</figcaption>
+          </figure>
+          <p>
+            The pendulum achieves a rest state at given position. ### Relation of
+            <span class="math inline">\(Q\)</span> and
+            <span class="math inline">\(R\)</span> As we saw earlier LQR tries to
+            minimize the cost function consisting of
+            <span class="math inline">\(Q\)</span> and
+            <span class="math inline">\(R\)</span> matrices. ####
+            <span class="math inline">\(Q\)</span> penalizes state error what does
+            that mean? Let’s take a base case of a simple pendulum with Q matrix
+            defined as Q=[100 0; 0 100] and R as 0.001 and we have to achieve an
+            end point of <span class="math inline">\(-\pi/2\)</span> from rest.
+            <br />
+            For a pendulum it’s state variables are defined by it’s angle
+            <span class="math inline">\(\theta\)</span> and
+            <span class="math inline">\(\dot{\theta}\)</span> ,Q=[100 0; 0 100]
+            says that we have given equal penalty to both error in position and
+            velocity(Here in terms of
+            <span class="math inline">\(\theta\)</span>). <br />
+            In simulation is obtained as <br> <br />
+          <figure>
+            <img src="./assests/Base.gif" alt="Base" />
+            <figcaption aria-hidden="true">Base</figcaption>
+          </figure>
+          </p>
+          <p>
+            <br />
+          <h4> Now let’s penalize error in position more Q=[100 0; 0 1] </h4><br />
+          </p>
+          <figure>
+            <img src="./assests/Q_More.gif" alt="Q_More" />
+            <figcaption aria-hidden="true">Q_More</figcaption>
+          </figure>
+          <p>
+            This happens because the control tries to minimize the error in
+            position faster than velocity
+          </p>
+          <p>
+            <br />
+          <h4> Let’s penalize actuator effort R=1</h4> <br />
+          </p>
+          <figure>
+            <img src="./assests/R_More.gif" alt="R_More" />
+            <figcaption aria-hidden="true">R_More</figcaption>
+          </figure>
+          <p>
+            <br />
+            See how the actuator aims to use least amount of effort to conserve
+            energy. <br />
+          </p>
+          <h4
+            id="increasing-q-makes-the-system-more-focused-on-reducing-state-deviations-leading-to-more-aggressive-actions-to-keep-the-states-closer-to-their-desired-values.">
+            Increasing Q makes the system more focused on reducing state
+            deviations, leading to more aggressive actions to keep the states
+            closer to their desired values.
+          </h4>
+          <h4
+            id="increasing-r-makes-the-system-prioritize-minimizing-control-effort-resulting-in-more-conservative-actions-and-allowing-larger-state-deviations.">
+            Increasing R makes the system prioritize minimizing control effort,
+            resulting in more conservative actions and allowing larger state
+            deviations.
+          </h4>
+          <p>
+            In practical robotics, balancing actuator effort and energy is crucial
+            to ensure efficiency and performance. Efficient control conserves
+            energy, which is essential for battery-powered robots and helps extend
+            their operational time. Such control also helps us setting the limits
+            of a system.
+          </p>
+          <h2 id="d-model-and-specifications">3D Model and specifications</h2>
+          <p>
+            We created a 3D model of our balancer using Onshape. For control we
+            plan to use NEMA17 stepper motors for precision control along wiht
+            A2988 motor driver. Using ESP32-WROOM we plan to launch our model to
+            control it.
+          </p>
+          <figure>
+            <img src="./assests/Balancer_OnShape.png" alt="Balancer_OnShape" />
+            <figcaption aria-hidden="true">Balancer_OnShape</figcaption>
+          </figure>
+          <p>This CAD-Model is to be simulated in MATLAB.</p>
+          <h2 id="updates">Updates</h2>
+          <ul>
+            <li>Completed understanding basics of Control Systems and LQR</li>
+            <li>
+              Successfully simulated control of Pendulum, Spring mass system and
+              Inverse Pendulum
+            </li>
+            <li>Finished CAD-Model for balancer</li>
+          </ul>
+          <h2 id="challenges">Challenges</h2>
+          <ul>
+            <li>Problems in achiveing stepper control in ESP-IDF</li>
+            <li>Setting up state space matrices</li>
+            <li>
+              Setting up the mathematical model for the CAD-Model and simulating
+              it in MATLAB
+            </li>
+          </ul>
+          <h2 id="future-plans">Future Plans</h2>
+          <ul>
+            <li>Achieve simulation of CAD-Model in MATLAB</li>
+            <li>Run our control on ESP32 with ESP-IDF framework</li>
+          </ul>
+          <p><br /></p>
+      </section>
+    </main>
+
+    <footer>
+      <!-- Footer content -->
+      <a href="../index.html" class="back-link">&lt; home</a>
+    </footer>
+  </div>
+  <script>
+    // Initialize MathJax
+    MathJax = {
+      tex: {
+        inlineMath: [
+          ["$", "$"],
+          ["\\(", "\\)"],
+        ],
+      },
+      svg: {
+        fontCache: "global",
+      },
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+</body>
+
+</html>

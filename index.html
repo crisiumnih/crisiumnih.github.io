@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
-    
-    <title>zsh</title>
+
+    <title>bash</title>
     <style>
         body {
             background-color: #353340;
@@ -15,8 +16,9 @@
             font-family: 'Fira Code', monospace;
             margin: 0;
             padding: 0;
-            
+
         }
+
         .container {
             max-width: 60%;
             margin: 0 auto;
@@ -24,6 +26,7 @@
             text-align: center;
             overflow: hidden;
         }
+
         hr {
             border: 0;
             height: 1px;
@@ -31,84 +34,108 @@
             width: 100%;
             margin-top: 15px;
         }
+
         pre {
             font-size: 6px;
             color: #FF66CC;
             margin: 0;
             display: inline-block;
-            text-align: left; 
+            text-align: left;
         }
+
         .terminal-container {
-            text-align: center; 
+            text-align: center;
             position: relative;
         }
+
         .terminal {
-            
+
             overflow-y: hidden;
-            
+
             padding-bottom: 10px;
-            margin: 0 ;
+            margin: 0;
             display: inline-block;
             position: relative;
             font-size: 20px;
             line-height: 1.5;
             text-align: left;
         }
+
         .cursor {
-            position: relative; 
-            display: inline-block; 
-            top: 5px; 
-            margin-left: 10px; 
+            position: relative;
+            display: inline-block;
+            top: 5px;
+            margin-left: 10px;
             width: 10px;
             height: 24px;
             background-color: #FF66CC;
             animation: blink 1s infinite;
         }
+
         .prompt {
-            
+
             color: #70FFAD;
         }
+
         .yap {
             font-size: 17px;
         }
+
         .inside {
-            color: #FF66CC; 
+            color: #FF66CC;
         }
+
         .dark-green {
-            color: limegreen; 
+            color: limegreen;
         }
+
         .projects-link {
-            color: #FF66CC; 
-            text-decoration: none; 
+            color: #FF66CC;
+            text-decoration: none;
         }
+
         .projects-link:hover {
-            text-decoration: underline; 
+            text-decoration: underline;
         }
+
         .socials {
-            color: #70FFAD; 
+            color: #70FFAD;
         }
+
         .socials a {
-            color: #70FFAD; 
-            text-decoration: none; 
+            color: #70FFAD;
+            text-decoration: none;
             margin: 0 5px;
         }
-        .arch-logo {
-            width: 25px; 
+
+        .deb-logo {
+            width: 25px;
             vertical-align: middle;
             margin-left: -5px;
-        }.vsc-logo {
-            width: 23px; 
+        }
+
+        .vsc-logo {
+            width: 23px;
             vertical-align: middle;
             margin-left: 3px;
         }
+
         @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0; }
-            100% { opacity: 1; }
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
         }
-        
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="terminal-container">
@@ -130,45 +157,53 @@
     <div class="terminal-container">
         <div class="terminal">
             <span class="prompt">crisiumnih@crisi:~$</span><span class="dark-green"> whoami</span> <br>
-               Prajwal Avhad 
-             
-         
+            Prajwal Avhad
+
+
             <br>
             <br>
             <span class="prompt">crisiumnih@crisi:~$</span> <span class="dark-green"> hostnamectl</span> <br>
             <span class="yap">
-            currently an electrical engineer in making and exploring pretty much everything <br>
-             recently i<br>
-             <span class="inside">>started exploring: </span>control systems<br>
-             <span class="inside">>started learning: </span> comp arch 🏢<br>
-             <span class="inside">>made: </span> this website <br>
-             <span class="inside">>started using: </span> arch <img src="arch.png" alt="Arch Logo" class="arch-logo"><br>
-             <span class="inside">>follow: </span> f1 🏎️<br>
-             <br>
-             
-             
-             i like to<br>
-             <span class="inside">>use: </span> vsc <img src="vsc.png" alt="vsc Logo" class="vsc-logo"><br>
-             <span class="inside">>drink: </span> redbull <br>
-             <span class="inside">>hate: </span> python <br><br>
+                currently an electrical engineer in making and exploring pretty much everything <br>
+                recently i<br>
+                <span class="inside">>started exploring: </span>ros<br>
+                <span class="inside">>started learning: </span> control, comp arch<br>
+                <span class="inside">>made: </span> self-balancing bot <br>
+                <span class="inside">>started using: </span> debian <img src="deb.png" alt="debian Logo"
+                    class="deb-logo"><br>
+                <span class="inside">>follow: </span> f1 🏎️<br>
+                <br>
+
+
+                i like to<br>
+                <span class="inside">>use: </span> vsc <img src="vsc.png" alt="vsc Logo" class="vsc-logo"><br>
+                <span class="inside">>drink: </span> redbull <br>
+                <span class="inside">>distro hop </span> <br>
+                <span class="inside">>hate: </span> python <br><br>
 
             </span>
             <span class="prompt">crisiumnih@crisi:~$</span> <span class="dark-green"> projects</span> <br>
-            <span class="yap"><a class="projects-link" href="/projects.html">check out here</a></span>
+            <span class="yap"><a class="projects-link" href="./projects.html">check out here</a></span>
+
+            <br><br>
+            <span class="prompt">crisiumnih@crisi:~$</span> <span class="dark-green"> blogs</span> <br>
+            <span class="yap"><a class="projects-link" href="./blogs.html">read here</a></span>
 
             <br><br>
             <span class="prompt">crisiumnih@crisi:~$</span> <span class="dark-green"> socials</span><br>
-            <span class="yap"><a class="projects-link" href="https://github.com/crisiumnih">github</a> 
-                <a class="projects-link" href="https://in.linkedin.com/in/prajwal-avhad-vjti">linkedin</a> 
-                <a class="projects-link" href="fasfasmag@proton.me">email</a> 
+            <span class="yap"><a class="projects-link" href="https://github.com/crisiumnih">github</a>
+                <a class="projects-link" href="https://in.linkedin.com/in/prajwal-avhad-vjti">linkedin</a>
+                <a class="projects-link" href="fasfasmag@proton.me">email</a>
                 <a class="projects-link" href="https://discord.com/invite/UqHrCsrD">discord</a>
-                
+
             </span>
             <br>
-<br>
-            <span class="prompt">crisiumnih@crisi:~$</span><div class="cursor"></div>
-       </div>
-        
+            <br>
+            <span class="prompt">crisiumnih@crisi:~$</span>
+            <div class="cursor"></div>
+        </div>
+
     </div>
 </body>
+
 </html>
