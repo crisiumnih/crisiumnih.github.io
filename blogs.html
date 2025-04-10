@@ -6,121 +6,173 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Ultra&display=swap" rel="stylesheet"> 
 
-  <title>blogs</title>
+  <title>blogs ~ SBR</title>
   <style>
     body {
-      background-color: #353340;
-      color: #ffffff;
+      background-color: #F5ECCE; /* Sandy Beige */
+      color: #4A2E20; /* Dark Brown Text */
       font-family: 'Fira Code', monospace;
       margin: 0;
       padding: 0;
+       /* Optional: Star pattern background - different colors/position */
+      /* background-image: radial-gradient(#FF66CC 1px, transparent 1px), radial-gradient(#00BFFF 1px, transparent 1px); */
+      /* background-size: 40px 40px, 40px 40px; */
+      /* background-position: 0 0, 20px 20px; */
     }
 
     .container {
       max-width: 80%;
-      margin: 0 auto;
+      margin: 40px auto; /* Add margin top/bottom */
       padding: 20px;
       text-align: center;
     }
 
+     h1 {
+      font-family: 'Ultra', serif; /* Bolder, stylized font */
+      color: #00BFFF; /* Bright Blue */
+      font-size: 3em;
+      margin-bottom: 10px;
+       text-shadow: 2px 2px 0px #FF66CC; /* Pink shadow */
+       /* Add Japanese text below */
+       position: relative;
+    }
+    h1::after {
+        content: 'ブログ'; /* Japanese for 'Blog' */
+        font-family: sans-serif; /* Standard font for Japanese */
+        font-size: 0.4em;
+        color: #A3E000; /* SBR Green */
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
     hr {
       border: 0;
-      height: 1px;
-      background-color: rgb(255, 102, 204);
+      height: 3px; /* Thicker divider */
+      background-color: #4A2E20; /* Dark Brown */
       width: 100%;
-      margin-top: 15px;
+      margin-top: 30px; /* More space after title */
+      margin-bottom: 40px;
     }
 
     .blog-card {
-      background-color: #494759;
-      padding: 20px;
-      margin-bottom: 20px;
+      background-color: rgba(255, 255, 255, 0.7); /* Slightly transparent white card */
+      padding: 25px;
+      margin-bottom: 30px;
       text-align: left;
-      border-radius: 5px;
+      border: 3px solid #4A2E20; /* Dark Brown border */
+      border-radius: 0px; /* Sharp corners */
+      box-shadow: 6px 6px 0px #00BFFF; /* Blue offset shadow */
+      transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     }
 
-    .blog-card h2 {
-      color: #FF66CC;
-      margin-top: 0;
+     .blog-card:hover {
+        transform: translate(-3px, -3px);
+        box-shadow: 9px 9px 0px #FF66CC; /* Pink shadow on hover */
     }
+
+    .blog-card h2 { /* Style the link *inside* h2 */
+      margin-top: 0;
+      margin-bottom: 10px; /* Space below title */
+    }
+
+    .blog-card h2 a { /* Target the link specifically */
+      color: #A3E000; /* SBR Green */
+      text-decoration: none;
+      font-size: 1.8em;
+      text-shadow: 1px 1px 0px #4A2E20; /* Subtle dark shadow */
+      transition: color 0.2s;
+    }
+    .blog-card h2 a:hover {
+        color: #FF66CC; /* Pink on hover */
+    }
+
 
     .blog-card p {
-      line-height: 1.5;
+      line-height: 1.6;
+      font-size: 1.1em;
+      color: #4A2E20; /* Dark Brown text */
+      margin-bottom: 20px; /* Space below paragraph */
     }
 
     .blog-card .links {
       display: flex;
-      justify-content: flex-end;
+      justify-content: flex-end; /* Align link to the right */
       align-items: center;
     }
 
-    .blog-card a {
-      color: #70FFAD;
+    /* Style the 'read' link */
+    .blog-card .links a {
+      color: #8A2BE2; /* Purple */
       text-decoration: none;
       display: flex;
       align-items: center;
+      font-weight: bold;
+      font-size: 1.1em;
+      transition: color 0.2s;
     }
 
-    .blog-card a:hover {
+    .blog-card .links a:hover {
+      color: #00BFFF; /* Blue on hover */
       text-decoration: underline;
     }
 
-    .blog-card a svg {
-      margin-left: 5px;
+    .blog-card .links a svg {
+      margin-left: 8px;
+      stroke: #8A2BE2; /* Purple icon */
+      transition: stroke 0.2s;
+    }
+    .blog-card .links a:hover svg {
+       stroke: #00BFFF; /* Blue icon on hover */
     }
 
+
     .back-link {
-      color: #70FFAD;
+      color: #A3E000; /* SBR Green */
       text-decoration: none;
-      display: block;
-      margin-top: 20px;
+      display: inline-block; /* Center it better */
+      margin-top: 40px;
+      font-size: 1.2em;
+      font-weight: bold;
+      border: 2px solid #8A2BE2; /* Purple border */
+      padding: 8px 15px;
+      transition: background-color 0.2s, color 0.2s;
     }
 
     .back-link:hover {
-      text-decoration: underline;
+      background-color: #8A2BE2; /* Purple background on hover */
+      color: #F5ECCE; /* Light text on hover */
+      text-decoration: none;
     }
   </style>
 </head>
 
 <body>
   <div class="container">
-    <h1>blogs</h1>
+    <h1>Blog Posts</h1>
     <hr>
 
     <div class="blog-card">
-      <a href="./blogs/1_lqr.html"><h2>Building a Two-Wheeled Balancer with LQR Control</h2></a>
+      <h2><a href="./blogs/1_lqr.html">Building a Two-Wheeled Balancer with LQR Control</a></h2>
       <p>Improvise. Adaptive Control. Overcome.</p>
       <div class="links">
-        <a href="./blogs/1_lqr.html">read <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#70FFAD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+        <a href="./blogs/1_lqr.html">Read Post » <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
       </div>
     </div>
     <div class="blog-card">
-      <a href="./blogs/2_3dp.html"><h2>Fixing an Old 3D Printer (Almost)</h2></a>
+       <h2><a href="./blogs/2_3dp.html">Fixing an Old 3D Printer (Almost)</a></h2>
       <p>Shenanigans.</p>
       <div class="links">
-        <a href="./blogs/2_3dp.html">read <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#70FFAD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+        <a href="./blogs/2_3dp.html">Read Post » <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
       </div>
     </div>
 
-    <!-- <div class="blog-card">
-      <h2>Debugging Techniques for Embedded Systems</h2>
-      <p>Exploring effective debugging methods for embedded systems, including hardware and software troubleshooting strategies.</p>
-      <div class="links">
-        <a href="/embedded-debugging.html">read <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#70FFAD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
-      </div>
-    </div>
+    <!-- Add other blog cards here -->
 
-    <div class="blog-card">
-      <h2>The Importance of Version Control in Engineering Projects</h2>
-      <p>Learn about the benefits of using version control systems like Git to manage your engineering projects and collaborate effectively.</p>
-      <div class="links">
-        <a href="/version-control.html">read <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#70FFAD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
-      </div>
-    </div> -->
-
-    <a href="./index.html" class="back-link">&lt; home</a>
+    <a href="./index.html" class="back-link">« Back Home // 戻る</a>
   </div>
 </body>
 

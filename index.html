@@ -7,210 +7,222 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
-    <script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-    <title>bash</title>
+    <!-- Removed Ultra font -->
+    <!-- Removed MathJax script reference -->
+    <title>Prajwal Avhad ~ Home</title>
     <style>
         body {
-            background-color: #353340;
-            color: #ffffff;
-            font-family: 'Fira Code', monospace;
+            background-color: #F5ECCE; /* Sandy Beige */
+            color: #4A2E20; /* Dark Brown Text */
+            font-family: 'Fira Code', monospace; /* Consistent font */
             margin: 0;
-            padding: 0;
-
+            padding: 20px;
         }
 
         .container {
-            max-width: 60%;
+            max-width: 75%;
             margin: 0 auto;
             padding: 20px;
             text-align: center;
-            overflow: hidden;
         }
 
-        hr {
-            border: 0;
-            height: 1px;
-            background-color: rgb(255, 102, 204);
-            width: 100%;
-            margin-top: 15px;
-        }
-
-        pre {
-            font-size: 6px;
-            color: #FF66CC;
-            margin: 0;
-            display: inline-block;
-            text-align: left;
-        }
-
-        .terminal-container {
+        .header-image-container {
+            margin-bottom: 30px;
             text-align: center;
-            position: relative;
+            border-bottom: 3px solid #4A2E20;
+            padding-bottom: 20px;
         }
 
-        .terminal {
-
-            overflow-y: hidden;
-
-            padding-bottom: 10px;
-            margin: 0;
+        .header-image {
+            max-width: 70%;
+            height: auto;
             display: inline-block;
-            position: relative;
-            font-size: 20px;
-            line-height: 1.5;
+            border: 3px solid #4A2E20;
+            box-shadow: 5px 5px 0px #A3E000; /* SBR Green offset shadow */
+        }
+
+        .main-content-area {
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 30px 40px;
+            margin-top: 30px;
             text-align: left;
+            border: 3px solid #4A2E20;
+            border-radius: 0px;
+            box-shadow: 8px 8px 0px #FF66CC; /* Pink offset shadow */
         }
 
-        .cursor {
-            position: relative;
-            display: inline-block;
-            top: 5px;
-            margin-left: 10px;
-            width: 10px;
-            height: 24px;
-            background-color: #FF66CC;
-            animation: blink 1s infinite;
+        .content-section {
+            margin-bottom: 30px;
+        }
+        .content-section:last-child {
+             margin-bottom: 0;
         }
 
-        .prompt {
+        /* Updated Section Title Style */
+        .section-title {
+            font-family: 'Fira Code', monospace; /* Use Fira Code */
+            font-size: 1.8em; /* Adjust size */
+            font-weight: 600; /* Make it bolder */
+            color: #A3E000; /* SBR Green like project titles */
+            text-shadow: 1px 1px 0px #4A2E20; /* Subtle dark shadow */
+            margin-bottom: 15px; /* Increased space below title */
+            display: block; /* Ensure it takes full width */
+        }
+        /* Removed ::after pseudo-elements and specific color classes */
 
-            color: #70FFAD;
+        .section-content {
+            font-size: 1.1em;
+            line-height: 1.7;
+            color: #4A2E20;
         }
 
+        /* Style for the 'hostnamectl' list - uses section-content styles */
         .yap {
-            font-size: 17px;
+             font-size: 1em; /* Inherit from section-content */
+             line-height: 1.6;
         }
-
         .inside {
-            color: #FF66CC;
+            color: #E6007A; /* Darker Pink */
+            font-weight: 600; /* Bolder */
         }
 
-        .dark-green {
-            color: limegreen;
+        /* Plain text for beliefs */
+        .beliefs-text p {
+            margin-bottom: 5px; /* Space between belief points */
+            font-weight: 500; /* Slightly bolder than regular text */
+        }
+
+        /* Links styling */
+        .links-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .links-list li {
+            margin-bottom: 20px; /* More space between link items */
+        }
+        .link-label {
+            font-family: 'Fira Code', monospace; /* Use Fira Code */
+            font-size: 1.3em; /* Adjust size */
+            font-weight: 600; /* Bolder */
+            color: #FF66CC; /* Keep pink for labels */
+            margin-right: 10px;
+            display: block;
+            margin-bottom: 8px; /* Space between label and link */
         }
 
         .projects-link {
-            color: #FF66CC;
+            color: #3f391a; /* Gold/Yellow */
             text-decoration: none;
+            font-weight: 600; /* Bolder link */
+            font-size: 1.1em;
+            transition: color 0.2s;
         }
-
         .projects-link:hover {
+            color: #E6007A; /* Darker Pink on hover */
             text-decoration: underline;
         }
 
         .socials {
-            color: #70FFAD;
+            margin-top: 10px;
         }
-
         .socials a {
-            color: #70FFAD;
+            color: #3f391a;
             text-decoration: none;
-            margin: 0 5px;
+            margin: 0 10px;
+            font-weight: 600; /* Bolder social links */
+            font-size: 1.1em;
+            transition: color 0.2s;
+        }
+         .socials a:first-child {
+             margin-left: 0;
+         }
+        .socials a:hover {
+             color: #E6007A;
         }
 
         .deb-logo {
             width: 25px;
             vertical-align: middle;
-            margin-left: -5px;
+            margin-left: -2px;
+            filter: contrast(1.1);
         }
+        
 
-        .vsc-logo {
-            width: 23px;
-            vertical-align: middle;
-            margin-left: 3px;
-        }
-
-        @keyframes blink {
-            0% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0;
-            }
-
-            100% {
-                opacity: 1;
-            }
-        }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <div class="terminal-container">
-            <pre>
- ██████   ██████         
-░░██████ ██████          
- ░███░█████░███   ██████ 
- ░███░░███ ░███  ███░░███
- ░███ ░░░  ░███ ░███████ 
- ░███      ░███ ░███░░░  
- █████     █████░░██████ 
- ░░░░░     ░░░░░  ░░░░░░  
-            </pre>
-            <hr>
-        </div>
-    </div>
-    <br>
-    <br>
-    <div class="terminal-container">
-        <div class="terminal">
-            <span class="prompt">crisiumnih@crisi:~$</span><span class="dark-green"> whoami</span> <br>
-            Prajwal Avhad
+        <div class="header-image-container">
+            <img src="blogs/assests/home.png" alt="Steel Ball Run Vol. 1 Cover Art" class="header-image" style="width: 12%;">
+        </div>        
 
+        <div class="main-content-area">
 
-            <br>
-            <br>
-            <span class="prompt">crisiumnih@crisi:~$</span><span class="dark-green"> what i believe</span> <br>
-            <span class="yap">
-               \[ \text{Reproducibility} \in \text{Science} \]  
-               \[ \text{Iterative} \subseteq \text{Approach} \]  
-            </span>
-            <span class="prompt">crisiumnih@crisi:~$</span> <span class="dark-green"> hostnamectl</span> <br>
-            <span class="yap">
-                currently an electrical engineer in making and exploring pretty much everything <br>
-                recently i<br>
-                <span class="inside">>started exploring: </span>rl, julia<br>
-                <span class="inside">>started learning: </span> control, comp arch<br>
-                <span class="inside">>made: </span> turtle?🐢🐢 <br>
-                <span class="inside">>started using: </span> debian <img src="deb.png" alt="debian Logo"
-                    class="deb-logo"><br>
-                <span class="inside">>follow: </span> f1 🏎️<br>
-                <br>
+            <!-- Whoami Section -->
+            <div class="content-section">
+                <h2 class="section-title">whoami</h2>
+                <p class="section-content">Prajwal</p>
+            </div>
 
+            <!-- Beliefs Section - Plain Text -->
+            <div class="content-section">
+                <h2 class="section-title">what i believe</h2>
+                <div class="section-content beliefs-text">
+                   <p>// science thrives on reproducibility and iteration </p>
+                </div>
+            </div>
 
-                i like to<br>
-                <span class="inside">>use: </span> nvim <br>
-                <span class="inside">>drink: </span> redbull, coffee <br>
-                <span class="inside">>distro hop </span> <br>
-                <span class="inside">>tinker with: </span>electronics, circuits, codebases and robots<br>
-            </span>
-            <br>
-            <span class="prompt">crisiumnih@crisi:~$</span> <span class="dark-green"> projects</span> <br>
-            <span class="yap"><a class="projects-link" href="./projects.html">check out here</a></span>
+            <!-- Hostnamectl / About Section -->
+            <div class="content-section">
+                <h2 class="section-title">about</h2>
+                <div class="section-content yap">
+                    currently an electrical engineer in making and exploring pretty much everything <br>
+                    recently i<br>
+                    <span class="inside">> started exploring: </span>rl, julia<br>
+                    <span class="inside">> started learning: </span> control, comp arch<br>
+                    <span class="inside">> made: </span> turtle?🐢🐢 <br>
+                    <span class="inside">> started using: </span> debian <img src="deb.png" alt="debian Logo" class="deb-logo"><br>
+                    <span class="inside">> follow: </span> f1 🏎️<br>
+                    <br>
+                    i like to<br>
+                    <span class="inside">> use: </span> nvim <br>
+                    <span class="inside">> drink: </span> redbull, coffee <br>
+                    <span class="inside">> distro hop </span> <br>
+                    <span class="inside">> tinker with: </span>electronics, circuits, codebases and robots<br>
+                </div>
+            </div>
 
-            <br><br>
-            <span class="prompt">crisiumnih@crisi:~$</span> <span class="dark-green"> blogs</span> <br>
-            <span class="yap"><a class="projects-link" href="./blogs.html">read here</a></span>
+            <!-- Links Section -->
+            <div class="content-section">
+                 <h2 class="section-title">links    </h2>
+                 <ul class="links-list section-content">
+                     <li>
+                         <span class="link-label">// projects</span>
+                         <a class="projects-link" href="./projects.html">GO CHECK THEM OUT -></a> <br>
+                         <a class="projects-link" href="./journey.html">MY JOURNEY IN A PAGE -></a>
+                     </li>
+                     <li>
+                          <span class="link-label">// blogs</span>
+                         <a class="projects-link" href="./blogs.html">READ MY MIND -></a>
+                     </li>
+                     <li>
+                          <span class="link-label">// socials</span>
+                         <div class="socials">
+                            <a href="https://github.com/crisiumnih">github</a> |
+                            <a href="https://in.linkedin.com/in/prajwal-avhad-vjti">linkedin</a> |
+                            <a href="mailto:fasfasmag@proton.me">email</a> |
+                            <a href="https://discord.com/invite/UqHrCsrD">discord</a> |
+                            <a href="https://x.com/PrajwalAvhad8">twitter</a>
+                        </div>
+                     </li>
+                 </ul>
+            </div>
 
-            <br><br>
-            <span class="prompt">crisiumnih@crisi:~$</span> <span class="dark-green"> socials</span><br>
-            <span class="yap"><a class="projects-link" href="https://github.com/crisiumnih">github</a>
-                <a class="projects-link" href="https://in.linkedin.com/in/prajwal-avhad-vjti">linkedin</a>
-                <a class="projects-link" href="fasfasmag@proton.me">email</a>
-                <a class="projects-link" href="https://discord.com/invite/UqHrCsrD">discord</a>
+        </div> <!-- End main-content-area -->
 
-            </span>
-            <br>
-            <br>
-            <span class="prompt">crisiumnih@crisi:~$</span>
-            <div class="cursor"></div>
-        </div>
-
-    </div>
+    </div> <!-- End container -->
 </body>
 
 </html>

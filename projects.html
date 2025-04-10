@@ -1,134 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Ultra&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/lucide-react@0.263.1/dist/lucide.min.js"></script>
 
-  <title>projects</title>
+  <title>projects ~ SBR</title>
   <style>
     body {
-      background-color: #353340;
-      color: #ffffff;
+      background-color: #F5ECCE; /* Sandy Beige */
+      color: #4A2E20; /* Dark Brown Text */
       font-family: 'Fira Code', monospace;
       margin: 0;
       padding: 0;
+      /* Optional: Star pattern background */
+      /* background-image: radial-gradient(#8A2BE2 1px, transparent 1px), radial-gradient(#A3E000 1px, transparent 1px); */
+      /* background-size: 30px 30px, 30px 30px; */
+      /* background-position: 0 0, 15px 15px; */
     }
 
     .container {
       max-width: 80%;
-      margin: 0 auto;
+      margin: 40px auto; /* Add margin top/bottom */
       padding: 20px;
       text-align: center;
     }
-    
-        
-        h2 {
-          color: limegreen;
-            
-            margin-bottom: 20px;
-        }
+
+    h1 {
+      font-family: 'Ultra', serif; /* Bolder, stylized font */
+      color: #8A2BE2; /* Deep Purple */
+      font-size: 3em;
+      margin-bottom: 10px;
+       text-shadow: 2px 2px 0px #A3E000; /* SBR Green shadow */
+       /* Add Japanese text below */
+       position: relative;
+    }
+    h1::after {
+        content: 'プロジェクト'; /* Japanese for 'Projects' */
+        font-family: sans-serif; /* Standard font for Japanese */
+        font-size: 0.4em;
+        color: #FF66CC; /* Pink */
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
 
     hr {
       border: 0;
-      height: 1px;
-      background-color: rgb(255, 102, 204);
+      height: 3px; /* Thicker divider */
+      background-color: #4A2E20; /* Dark Brown */
       width: 100%;
-      margin-top: 15px;
+      margin-top: 30px; /* More space after title */
+      margin-bottom: 40px;
     }
 
     .project-card {
-      background-color: #494759;
-      padding: 20px;
-      margin-bottom: 20px;
+      background-color: rgba(255, 255, 255, 0.7); /* Slightly transparent white card */
+      padding: 25px;
+      margin-bottom: 30px;
       text-align: left;
-      border-radius: 5px;
+      border: 3px solid #4A2E20; /* Dark Brown border */
+      border-radius: 0px; /* Sharp corners like panels */
+      box-shadow: 6px 6px 0px #8A2BE2; /* Purple offset shadow */
+      transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+
+    .project-card:hover {
+        transform: translate(-3px, -3px);
+        box-shadow: 9px 9px 0px #A3E000; /* Green shadow on hover */
     }
 
     .project-card h2 {
-      color: #FF66CC;
+      color: #A3E000; /* SBR Green */
       margin-top: 0;
+      font-size: 1.8em;
+      text-shadow: 1px 1px 0px #4A2E20; /* Subtle dark shadow */
     }
 
     .project-card p {
-      line-height: 1.5;
+      line-height: 1.6;
+      font-size: 1.1em;
+      color: #4A2E20; /* Dark Brown text */
     }
 
     .project-card .links {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end; /* Align links to the right */
       align-items: center;
+      margin-top: 15px;
+      gap: 20px; /* Space between links */
     }
 
     .project-card a {
-      color: #70FFAD;
+      color: #FF66CC; /* Pink */
       text-decoration: none;
       display: flex;
       align-items: center;
+      font-weight: bold;
+      font-size: 1.1em;
+      transition: color 0.2s;
     }
 
     .project-card a:hover {
+      color: #8A2BE2; /* Purple on hover */
       text-decoration: underline;
     }
 
     .project-card a svg {
-      margin-left: 5px;
+      margin-left: 8px;
+      stroke: #FF66CC; /* Pink icon */
+      transition: stroke 0.2s;
+    }
+    .project-card a:hover svg {
+        stroke: #8A2BE2; /* Purple icon on hover */
     }
 
+
     .back-link {
-      color: #70FFAD;
+      color: #8A2BE2; /* Purple */
       text-decoration: none;
-      display: block;
-      margin-top: 20px;
+      display: inline-block; /* Center it better */
+      margin-top: 40px;
+      font-size: 1.2em;
+      font-weight: bold;
+      border: 2px solid #FF66CC; /* Pink border */
+      padding: 8px 15px;
+      transition: background-color 0.2s, color 0.2s;
     }
 
     .back-link:hover {
-      text-decoration: underline;
+      background-color: #FF66CC; /* Pink background on hover */
+      color: #F5ECCE; /* Light text on hover */
+      text-decoration: none;
     }
   </style>
 </head>
 
 <body>
   <div class="container">
-    <h1>me projects</h1>
+    <h1>Projects</h1>
     <hr>
 
     <div class="project-card">
-      <h2>lqr balancer</h2>
-      <p>implemented lqr control on 2 wheeled bot.</p>
+      <h2>LQR Balancer // バランサー</h2>
+      <p>Implemented LQR control on a two-wheeled bot.</p>
       <div class="links">
-        <a href="./projects/lqr.html">view project</a>
-        <a href="./blogs/1_lqr.html">read blog</a>
-        <a href="https://github.com/crisiumnih/LQR_Balancer" target="_blank">github <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#70FFAD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+        <a href="./projects/lqr.html">View Project »</a>
+        <a href="./blogs/1_lqr.html">Read Blog »</a>
+        <a href="https://github.com/crisiumnih/LQR_Balancer" target="_blank">GitHub <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
       </div>
     </div>
 
-    <!-- <div class="project-card">
-      <h2>Robotic Arm Controller</h2>
-      <p>Developed a control system for a robotic arm using a Raspberry Pi and Python. The project includes a user interface for controlling the arm's movements.</p>
+    <!-- Add other project cards here following the same structure -->
+    <!-- Example:
+    <div class="project-card">
+      <h2>Spin Technique Simulator // 回転技</h2>
+      <p>Simulating the physics of the Spin using ✨MATH✨ and maybe some questionable code.</p>
       <div class="links">
-        <a href="/robotic-arm.html">View Project</a>
-        <a href="https://github.com/crisiumnih/robotic-arm-controller" target="_blank">GitHub <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#70FFAD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+        <a href="#">View Project »</a>
+        <a href="#">Read Blog »</a>
+        <a href="#" target="_blank">GitHub <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
       </div>
-    </div> -->
+    </div>
+     -->
 
-    <!-- <div class="project-card">
-      <h2>Autonomous Vehicle</h2>
-      <p>Built an autonomous vehicle prototype using ROS (Robot Operating System) and various sensors. The vehicle can navigate through environments and avoid obstacles.</p>
-      <div class="links">
-        <a href="/autonomous-vehicle.html">View Project</a>
-        <a href="https://github.com/crisiumnih/autonomous-vehicle" target="_blank">GitHub <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#70FFAD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
-      </div>
-    </div> -->
-
-    <a href="./index.html" class="back-link">&lt; Back to Home</a>
+    <a href="./index.html" class="back-link">« Back Home // 戻る</a>
   </div>
 </body>
 

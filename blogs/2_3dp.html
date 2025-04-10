@@ -9,261 +9,260 @@
       href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap"
       rel="stylesheet"
     />
-    <script
-      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
-      id="MathJax-script"
-    ></script>
-    <title>blogs</title>
+    <!-- MathJax script removed as it's not used -->
+    <title>Blog: Fixing an Old 3D Printer</title> <!-- Simple Title -->
     <style>
+      /* SBR Theme Styles - Applied to original structure */
       body {
-        background-color: #353340;
-        color: #ffffff;
+        background-color: #F5ECCE; /* Sandy Beige */
+        color: #4A2E20; /* Dark Brown */
         font-family: "Fira Code", monospace;
         margin: 0;
         padding: 0;
+        line-height: 1.7;
       }
 
       .container {
-        max-width: 60%;
-        margin: 0 auto;
+        max-width: 70%; /* Consistent width */
+        margin: 40px auto;
         padding: 20px;
         text-align: left;
-        overflow: hidden;
       }
 
-      hr {
-        border: 0;
-        height: 1px;
-        background-color: rgb(255, 102, 204);
-        width: 100%;
-        margin-top: 15px;
-      }
-
-      h1 {
-        color: #ff66cc;
-        text-align: center;
-        margin-bottom: 20px;
-      }
-
-      h2 {
-        color: limegreen;
-        margin-bottom: 20px;
-      }
-
-      h3 {
-        color: #70ffad;
-        margin-bottom: 20px;
-      }
-
-      h4 {
-        color: #ff66cccf;
-        margin-bottom: 20px;
-      }
-
-      .dark-green {
-        color: limegreen;
-      }
-
-      .back-link {
-        color: #70ffad;
-        text-decoration: none;
-        display: block;
-        margin-top: 20px;
-      }
-
-      .back-link:hover {
-        text-decoration: underline;
-      }
-
+      /* Header styling */
       header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 10px;
-        text-align: left;
+        padding-bottom: 15px;
+        margin-bottom: 30px;
+        border-bottom: 3px solid #4A2E20; /* Dark border below header */
+        font-size: 0.9em;
       }
 
-      .date,
-      git {
-        display: inline-block;
-        vertical-align: top;
-        text-align: left;
-      }
-
-      git {
-        margin-left: 20px;
+      .date {
+        color: #4A2E20;
+        font-weight: 500;
       }
 
       .git-link {
-        color: #70ffad;
-        font-size: 1em;
+        color: #00BFFF; /* Blue Link */
         text-decoration: none;
+        font-weight: 600;
+        transition: color 0.2s;
       }
-
       .git-link:hover {
+        color: #FF66CC; /* Pink on hover */
         text-decoration: underline;
       }
 
-      .blog-content img {
-        display: block;
-        margin: 20px auto;
-        max-width: 100%;
-        height: auto;
+       /* Main Blog Content Area */
+      #blog {
+          padding: 20px;
       }
 
-      figure {
+      /* Heading Styles */
+      h1 {
+        font-family: 'Fira Code', monospace;
+        font-weight: 700;
+        font-size: 2.8em;
+        color: #8A2BE2; /* Purple */
+        text-shadow: 2px 2px 0px #A3E000; /* SBR Green shadow */
         text-align: center;
-        margin: 20px auto;
-      }
-
-      figure img {
-        display: inline-block;
-        max-width: 100%;
-        height: auto;
-      }
-
-      figure figcaption {
+        margin-bottom: 40px;
         margin-top: 10px;
-        font-size: 0.9em;
-        color: #ff66cc;
-        text-align: center;
+        position: relative;
       }
-      .media-box {
-        display: flex;
-        justify-content: center;
-        gap: 25px; /* Space between items */
-        margin: 30px auto; /* Vertical spacing */
-        padding: 15px; /* Inner padding */
-        border: 2px solid #ff66cc; /* Pink border */
-        border-radius: 8px; /* Rounded corners */
-        background: linear-gradient(
-          135deg,
-          #3c3a4a 0%,
-          #2a2835 100%
-        ); /* Subtle gradient */
-        box-shadow: 0 0 15px rgba(255, 102, 204, 0.5); /* Static neon pink glow */
-        max-width: 90%;
+       h1::after {
+          content: 'プリンター修理'; /* Printer Repair */
+          font-family: sans-serif;
+          font-size: 0.35em;
+          color: #FF66CC; /* Pink */
+          position: absolute;
+          bottom: -20px;
+          left: 50%;
+          transform: translateX(-50%);
+          opacity: 0.8;
       }
 
+      h2 {
+        font-family: 'Fira Code', monospace;
+        font-weight: 600;
+        font-size: 1.9em;
+        color: #A3E000; /* SBR Green */
+        text-shadow: 1px 1px 0px #4A2E20; /* Dark shadow */
+        margin-top: 40px;
+        margin-bottom: 15px;
+        padding-bottom: 5px;
+        border-bottom: 2px dashed rgba(74, 46, 32, 0.5);
+      }
+
+      h3 { /* Used for Stay Tuned */
+         font-family: 'Fira Code', monospace;
+        font-weight: 600;
+        font-size: 1.5em;
+        color: #FF66CC; /* Pink */
+        text-shadow: 1px 1px 0px #4A2E20;
+        margin-top: 30px;
+        margin-bottom: 10px;
+        text-align: center; /* Center this one */
+      }
+
+      h4 { /* Used for Options */
+        font-family: 'Fira Code', monospace;
+        font-weight: 500;
+        font-size: 1.2em;
+        color: #00BFFF; /* Blue */
+        margin-top: 25px;
+        margin-bottom: 15px; /* More space below */
+        padding-left: 15px;
+        border-left: 3px solid #00BFFF;
+        line-height: 1.5; /* Adjust line height for multi-line H4 */
+      }
+
+      p {
+          margin-bottom: 1.2em;
+          color: #4A2E20;
+      }
+
+      /* Media Box Styling - Applied to original structure */
       .media-box {
         display: flex;
+        flex-wrap: wrap; /* Allow wrapping */
         justify-content: center;
-        gap: 20px; /* Reduced gap for tighter layout */
+        align-items: center;
+        gap: 25px;
         margin: 30px auto;
-        padding: 15px;
-        border: 2px solid #ff66cc;
-        border-radius: 8px;
-        background: linear-gradient(135deg, #3c3a4a 0%, #2a2835 100%);
-        box-shadow: 0 0 15px rgba(255, 102, 204, 0.5);
-        max-width: 90%;
+        padding: 20px;
+        border: 3px solid #4A2E20; /* Dark Border */
+        border-radius: 0px; /* Sharp Corners */
+        background-color: rgba(255, 255, 255, 0.6); /* Slightly transparent background */
+        box-shadow: 6px 6px 0px #FF66CC; /* Pink Offset Shadow */
+        max-width: 95%;
       }
 
-      /* Styling for media-box images and videos */
-      .media-box {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        margin: 30px auto;
-        padding: 15px;
-        border: 2px solid #ff66cc;
-        border-radius: 8px;
-        background: linear-gradient(135deg, #3c3a4a 0%, #2a2835 100%);
-        box-shadow: 0 0 15px rgba(255, 102, 204, 0.5);
-        max-width: 90%;
-      }
-      .media-box video:first-of-type {
-        height: 50%; /* Reduce height by 50% */
-        width: auto; /* Let width adjust automatically to maintain aspect ratio */
-        max-height: 70%; /* Ensure max-height is also set to 50% */
-      }
-
-      /* Styling for media-box images and videos */
-      .media-box img,
-      .media-box video {
-        width: 75%; /* Base width */
-        max-width: 100%;
-        height: auto; /* Maintain aspect ratio */
-        object-fit: contain; /* Prevent stretching */
-        border-radius: 5px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-      }
-
-      /* Specific tweak for portrait images to make them larger */
-      .media-box img {
-        width: 55%; /* Slightly wider for portrait photos */
-        max-width: 50%;
-      }
-
-      /* Override conflicting styles from .blog-content img */
-      .blog-content .media-box img {
-        display: inline-block;
-        margin: 0;
-      }
-      /* Target only the first video container on the page */
-      .container .media-box:first-of-type {
-        /* Set a specific max-height for the container */
-        max-height: 400px; /* Adjust this value as needed */
-        overflow: hidden;
-      }
-
-      .container .media-box:first-of-type video {
-        /* Keep aspect ratio while fitting within the container */
-        width: 75%;
-        height: auto; /* This maintains the aspect ratio */
-        max-height: 100%;
-        object-fit: contain;
-      }
-
-      /* Caption styling */
+      /* Figure within media box */
       .media-box figure {
         margin: 0;
         text-align: center;
+        flex: 1 1 300px; /* Allow grow/shrink */
+        max-width: 48%; /* Limit width */
       }
 
-      .media-box figcaption {
-        margin-top: 8px;
-        font-size: 0.85em;
-        color: #70ffad;
-        text-shadow: 0 0 5px rgba(112, 255, 173, 0.7);
+      /* Media elements within figure */
+      .media-box figure img,
+      .media-box figure video {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
+        border: 2px solid #4A2E20;
+        background-color: #e0d8c0;
+        border-radius: 0; /* Keep sharp corners if desired, or add radius */
       }
 
-      /* Responsive design: stack vertically on small screens */
-      @media (max-width: 768px) {
-        .media-box {
-          flex-direction: column;
-          align-items: center;
-          padding: 10px;
-          box-shadow: 0 0 10px rgba(255, 102, 204, 0.3);
-        }
-        .media-box img,
-        .media-box video {
-          width: 100%;
-          max-width: 100%;
-          height: auto;
-          margin-bottom: 15px;
-        }
+       /* Specific height limit for the video in the FIRST media box */
+       .container .media-box:nth-of-type(1) video {
+           max-height: 350px;
+           width: auto;
+           margin: 0 auto;
+       }
+        /* Specific width limit for the image in the SECOND media box */
+       .container .media-box:nth-of-type(2) figure:nth-of-type(1) img { /* Target image figure */
+          max-width: 70%; /* Allow portrait image to be narrower */
+          margin: 0 auto; /* Center */
+       }
+        /* Specific height limit for the video in the SECOND media box */
+       .container .media-box:nth-of-type(2) figure:nth-of-type(2) video {
+           max-height: 350px;
+           width: auto;
+           margin: 0 auto;
+       }
+
+
+      /* Caption styling within media box */
+      .media-box figure figcaption {
+        margin-top: 10px;
+        font-size: 0.95em; /* Original size was 0.9, then 0.85, let's use 0.95 */
+        font-weight: 500;
+        color: #8A2BE2; /* Purple caption */
+        text-align: center; /* Already centered by figure */
+        /* text-shadow: none; Remove potential text-shadow from original */
       }
+
+      /* Footer and Back Link */
+      footer {
+          margin-top: 40px;
+          text-align: center;
+          padding-top: 20px;
+          border-top: 3px solid #4A2E20;
+      }
+      .back-link {
+        color: #A3E000; /* SBR Green */
+        text-decoration: none;
+        display: inline-block;
+        font-size: 1.2em;
+        font-weight: bold;
+        border: 2px solid #8A2BE2; /* Purple border */
+        padding: 8px 15px;
+        transition: background-color 0.2s, color 0.2s;
+      }
+      .back-link:hover {
+        background-color: #8A2BE2; /* Purple background on hover */
+        color: #F5ECCE; /* Light text on hover */
+        text-decoration: none;
+      }
+
+      /* Remove or hide original conflicting styles */
+      body > style ~ * hr { display: none; } /* Hide original hr */
+      body > style ~ * .dark-green { color: inherit !important; } /* Reset dark-green */
+      body > style ~ * .blog-content img { /* Reset styles potentially applied by this class */
+          display: block;
+          margin: revert;
+          max-width: revert;
+          height: revert;
+      }
+      git { display: contents; } /* Ensure custom tag doesn't break flow */
+
+
+       /* Responsive adjustments */
+       @media (max-width: 768px) {
+          .container { max-width: 90%; }
+          .media-box { flex-direction: column; align-items: center; }
+          .media-box figure { max-width: 90%; flex-basis: auto; margin-bottom: 15px; }
+          .media-box figure:last-child { margin-bottom: 0; }
+          .media-box img, .media-box video { width: 100%; height: auto; max-height: none; }
+           .container .media-box:nth-of-type(1) video,
+           .container .media-box:nth-of-type(2) figure:nth-of-type(1) img,
+           .container .media-box:nth-of-type(2) figure:nth-of-type(2) video {
+                max-width: 100%;
+                max-height: none;
+           }
+       }
     </style>
   </head>
 
   <body>
+    <!-- Using EXACT HTML structure and content provided by user previously -->
     <div class="container">
       <header>
-        <div class="date">March 19, 2025</div>
+        <div class="date">March 19, 2025</div> <!-- Original Date -->
         <git>
           <a
-            href="https://github.com/yourusername/3d-printer-fix"
+            href="https://github.com/yourusername/3d-printer-fix" <!-- Original URL -->
             class="git-link"
             >github</a
-          >
+          > <!-- Original Text -->
         </git>
       </header>
 
       <main>
         <section id="blog">
-          <h1>Fixing an Old 3D Printer (Almost)</h1>
+          <h1>Fixing an Old 3D Printer (Almost)</h1> <!-- Original Title -->
           <br />
           <br />
+          <!-- Original Paragraphs -->
           <p>
             There was a 3D printer in the lab—locked up, collecting dust. It had
             been repaired multiple times but never worked properly. Everyone had
@@ -271,7 +270,8 @@
           </p>
           <p>One random day, I decided to try fixing it.</p>
 
-          <h2 id="first-fix">The First Fix: Filament Clog & Firmware Woes</h2>
+          <h2 id="first-fix">The First Fix: Filament Clog & Firmware Woes</h2> <!-- Original Heading -->
+          <!-- Original Paragraphs -->
           <p>
             The first problem was immediately obvious—the nozzle was clogged
             with filament. A straightforward replacement later, I powered the
@@ -285,23 +285,24 @@
             thoroughly, I decided to run a test print. To my surprise, the
             printer came to life and printed a Benchy in 1 hour and 40 minutes.
           </p>
+          <!-- Original Media Box 1 Structure -->
           <div class="media-box">
             <figure>
               <video controls>
                 <source src="./assests/2_1.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
-              <figcaption>alive</figcaption>
+              <figcaption>alive</figcaption> <!-- Original Caption -->
             </figure>
           </div>
-          <h2>The Build Plate</h2>
+          <h2>The Build Plate</h2> <!-- Original Heading -->
+          <!-- Original Paragraphs -->
           <p>
             A few days later, the build plate gave up. Prints refused to stick
             to the surface, making it useless. Fortunately, I found a metal
             magnetic plate, which turned out to be a great replacement. The
             printer was back in action.
           </p>
-
           <p>
             However, another issue cropped up—the Z-offset couldn't be adjusted
             further since it was already at the minimum. The only way to fix
@@ -309,22 +310,23 @@
             After recalibrating, the printer was able to handle basic prints
             again. To test it, I printed a cute dino keychain—a small victory.
           </p>
+           <!-- Original Media Box 2 Structure -->
           <div class="media-box">
             <figure>
-              <img src="./assests/2_2.jpeg" alt="Dino Keychain Print" />
-              <figcaption>Dino Keychain</figcaption>
+              <img src="./assests/2_2.jpeg" alt="Dino Keychain Print" /> <!-- Original Alt -->
+              <figcaption>Dino Keychain</figcaption> <!-- Original Caption -->
             </figure>
             <figure>
               <video controls>
                 <source src="./assests/2_2.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
-              <figcaption>Post-Recalibration Print</figcaption>
+              <figcaption>Post-Recalibration Print</figcaption> <!-- Original Caption -->
             </figure>
           </div>
 
-          <h2>The Endless Struggle</h2>
-
+          <h2>The Endless Struggle</h2> <!-- Original Heading -->
+           <!-- Original Paragraphs -->
           <p>
             I took a break. When I returned, someone had messed with the
             alignments, and the printer was out of tune once again. I realigned
@@ -336,8 +338,9 @@
             meaning the filament could no longer be fed properly. At this point,
             the only viable solution was to replace the extruder entirely.
           </p>
-          <h2>Repair or Repurpose?</h2>
-          <h3>Now, I stand at a crossroads:</h3>
+          <h2>Repair or Repurpose?</h2> <!-- Original Heading -->
+          <h3>Now, I stand at a crossroads:</h3> <!-- Original Sub-heading -->
+           <!-- Original H4 -->
           <h4>
             - Buy the required replacement parts and restore the printer fully.
             <br />
@@ -345,17 +348,18 @@
             - Convert it into a PCB etching machine, giving it a completely new
             purpose.
           </h4>
+           <!-- Original Paragraph -->
           <p>
             Both options are intriguing, and I’m still weighing my choices. One
             thing is certain, though—this abandoned machine has given me quite
             the hands-on experience in troubleshooting and repair.
           </p>
-          <h3>Stay tuned for the final verdict!</h3>
+          <h3>Stay tuned for the final verdict!</h3> <!-- Original Sub-heading -->
         </section>
       </main>
       <footer>
-        <!-- Footer content -->
-        <a href="../index.html" class="back-link">&lt; home</a>
+        <!-- Original Footer -->
+        <a href="../index.html" class="back-link">< home</a>
       </footer>
     </div>
   </body>

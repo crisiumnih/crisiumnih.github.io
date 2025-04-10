@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+    <title>The Journey So Far</title>
+    <style>
+      body {
+        background-color: #f5ecce; /* Sandy Beige */
+        color: #4a2e20; /* Dark Brown */
+        font-family: "Fira Code", monospace;
+        margin: 0;
+        padding: 40px 20px; /* Add padding top/bottom */
+        line-height: 1.7;
+      }
+
+      .container {
+        max-width: 750px; /* Consistent width, good for reading */
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      h1 {
+        font-family: "Fira Code", monospace; /* Stick to Fira Code */
+        font-weight: 700;
+        font-size: 2.8em;
+        color: #a3e000; /* SBR Green Title */
+        text-shadow: 2px 2px 0px #4a2e20; /* Dark shadow */
+        text-align: center;
+        margin-bottom: 50px; /* More space after title */
+        position: relative;
+      }
+      /* Optional Japanese Subtitle */
+      h1::after {
+        content: "旅路"; /* Journey */
+        font-family: sans-serif;
+        font-size: 0.35em;
+        color: #ff66cc; /* Pink */
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0.8;
+      }
+
+      .journey-container {
+        position: relative;
+        /* Optional: Add a central timeline line */
+        /* &::before {
+                content: '';
+                position: absolute;
+                top: 10px;
+                bottom: 10px;
+                left: 20px; // Adjust position
+                width: 3px;
+                background-color: rgba(74, 46, 32, 0.3); // Faded dark brown
+                z-index: 0;
+            } */
+      }
+
+      .journey-entry {
+        background-color: rgba(255, 255, 255, 0.7); /* Light transparent bg */
+        border: 3px solid #4a2e20; /* Dark Brown border */
+        border-radius: 0px; /* Sharp corners */
+        margin-bottom: 30px; /* Space between entries */
+        position: relative;
+        z-index: 1; /* Ensure entries are above timeline line if used */
+        transition: box-shadow 0.3s ease-in-out; /* Smooth shadow transition */
+      }
+
+      /* Alternating Shadows */
+      .journey-entry:nth-child(odd) {
+        box-shadow: 6px 6px 0px #ff66cc; /* Pink Shadow */
+      }
+      .journey-entry:nth-child(even) {
+        box-shadow: 6px 6px 0px #8a2be2; /* Purple Shadow */
+      }
+      .journey-entry:hover {
+        box-shadow: 8px 8px 0px #a3e000; /* Green Shadow on hover */
+        transform: translate(-1px, -1px); /* Slight lift */
+      }
+
+      .entry-summary {
+        padding: 20px 25px;
+        cursor: pointer;
+        position: relative; /* For the indicator */
+        display: flex; /* Use flex for better layout */
+        justify-content: space-between; /* Space out content */
+        align-items: center; /* Vertically center */
+      }
+
+      .summary-content {
+        flex-grow: 1; /* Allow content to take available space */
+        margin-right: 20px; /* Space before indicator */
+      }
+
+      .entry-summary .date {
+        font-size: 0.9em;
+        color: #8a2be2; /* Purple date */
+        display: block; /* Date on its own line */
+        margin-bottom: 5px;
+        font-weight: 500;
+      }
+
+      .entry-summary .title {
+        font-size: 1.4em;
+        font-weight: 600;
+        color: #4a2e20; /* Dark brown title */
+      }
+
+      /* Expansion Indicator */
+      .entry-summary::after {
+        content: "+"; /* Plus sign for closed state */
+        font-size: 2em;
+        font-weight: bold;
+        color: #a3e000; /* SBR Green indicator */
+        transition: transform 0.3s ease-out;
+        flex-shrink: 0; /* Prevent indicator from shrinking */
+      }
+
+      .journey-entry.active .entry-summary::after {
+        content: "−"; /* Minus sign for open state */
+        transform: rotate(180deg); /* Optional rotation */
+        color: #ff66cc; /* Pink when active */
+      }
+
+      .entry-details {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-out, padding 0.5s ease-out; /* Smooth transition */
+        padding: 0 25px; /* Horizontal padding, vertical padding added on expansion */
+        border-top: 1px dashed rgba(74, 46, 32, 0.3); /* Separator line */
+      }
+
+      .journey-entry.active .entry-details {
+        /* max-height is set by JS using scrollHeight */
+        padding: 20px 25px; /* Add vertical padding when open */
+      }
+
+      /* Styling for content within details */
+      .entry-details p {
+        margin-bottom: 1em;
+        color: #4a2e20;
+      }
+      .entry-details ul {
+        list-style: none;
+        padding-left: 0;
+        margin-left: 20px;
+      }
+      .entry-details li {
+        margin-bottom: 8px;
+        position: relative;
+        padding-left: 20px;
+      }
+      .entry-details li::before {
+        content: ">";
+        position: absolute;
+        left: 0;
+        color: #ff66cc; /* Pink bullet */
+        font-weight: bold;
+      }
+      .entry-details a {
+        color: #00bfff; /* Blue links */
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .entry-details a:hover {
+        color: #ff66cc; /* Pink hover */
+        text-decoration: underline;
+      }
+
+      /* Footer and Back Link */
+      footer {
+        margin-top: 40px;
+        text-align: center;
+        padding-top: 20px;
+        border-top: 3px solid #4a2e20;
+      }
+      .back-link {
+        color: #a3e000; /* SBR Green */
+        text-decoration: none;
+        display: inline-block;
+        font-size: 1.2em;
+        font-weight: bold;
+        border: 2px solid #8a2be2; /* Purple border */
+        padding: 8px 15px;
+        transition: background-color 0.2s, color 0.2s;
+      }
+      .back-link:hover {
+        background-color: #8a2be2; /* Purple background on hover */
+        color: #f5ecce; /* Light text on hover */
+        text-decoration: none;
+      }
+      /* Static ASCII Art Background Elements */
+      .static-ascii-art {
+        position: fixed; /* Position relative to viewport */
+        z-index: -1; /* Behind main content */
+        font-family: "Fira Code", monospace;
+        font-size: 12px; /* VERY small font size for background texture */
+        line-height: 0.8; /* Tight line height */
+        color: rgba(
+          74,
+          46,
+          32,
+          0.32
+        ); /* Very faint dark brown - ADJUST OPACITY */
+        white-space: pre; /* Preserve formatting */
+        pointer-events: none;
+        user-select: none;
+        overflow: hidden; /* Hide parts that go off-screen */
+        /* Add transition for potential future effects */
+        /* transition: opacity 0.5s ease-in-out; */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>The Journey So Far</h1>
+
+      <div class="journey-container">
+        <!-- Journey Entry 1 -->
+        <div class="journey-entry">
+          <div
+            class="entry-summary"
+            aria-expanded="false"
+            aria-controls="details-1"
+          >
+            <div class="summary-content">
+              <span class="date">2025</span>
+              <span class="title">Playing with MuJoCo</span>
+            </div>
+          </div>
+          <div class="entry-details" id="details-1">
+            <p>
+              Exploring control with MuJoCo and Brax by training PPO in
+              multi-environment setups. Currently studying quadruped dynamics,
+              focusing on stabilizing the robot in-place.
+            </p>
+            <ul>
+              <li>training PPO using Brax.</li>
+              <li>
+                experimenting with controlling and balancing a quadruped model(unitree go2).
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="journey-entry">
+          <div
+            class="entry-summary"
+            aria-expanded="false"
+            aria-controls="details-2"
+          >
+            <div class="summary-content">
+              <span class="date">2025</span>
+              <span class="title">Julia</span>
+            </div>
+          </div>
+          <div class="entry-details" id="details-2">
+            <p>
+              Went deep into set computation and reachability using Julia.
+              Discovered mathematical structures like sparse polynomial
+              zonotopes and zonotopes, reading papers and implementing core
+              functions.<br>
+              some favs - <a href="https://mediatum.ub.tum.de/doc/1620128/5jvbjwltxng2q1at6hcdoacpd.Dissertation_Niklas_Kochdumper.pdf">SPZs</a>,<a href="https://arxiv.org/abs/2108.01750">Ellipsotopes</a>
+            </p>
+            <ul>
+              <li>
+                studied and experimented with reachability analysis and set
+                representation.
+              </li>
+              <li>
+                implemented order reduction and set enclosures based on research
+                papers. <a href="https://mediatum.ub.tum.de/doc/1620128/5jvbjwltxng2q1at6hcdoacpd.Dissertation_Niklas_Kochdumper.pdf">SPZs</a>
+              </li>
+              <li>
+                mathematical rigor meets control
+                theory.
+              </li>
+              <li>
+                contributions merged in LazySets.jl— <a href="https://github.com/JuliaReach/LazySets.jl/pulls?q=is%3Apr+author%3Acrisiumnih">GitHub</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="journey-entry">
+          <div
+            class="entry-summary"
+            aria-expanded="false"
+            aria-controls="details-3"
+          >
+            <div class="summary-content">
+              <span class="date">2025</span>
+              <span class="title">BeagleMind</span>
+            </div>
+          </div>
+          <div class="entry-details" id="details-3">
+            <p>
+                This project was my first exposure to actually working with LLMs.
+              Implemented Retrieval-Augmented Generation (RAG) with
+              Qwen2.5-Instruct to chat with BeagleBoard documentation
+            </p>
+            <ul>
+              <li>
+                built a RAG tailored to BeagleBoard
+                documentation.
+              </li>
+              <li>
+                <a href="https://github.com/crisiumnih/beagle-mind">BeagleMind</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="journey-entry">
+          <div
+            class="entry-summary"
+            aria-expanded="false"
+            aria-controls="details-4"
+          >
+            <div class="summary-content">
+              <span class="date">2025</span>
+              <span class="title">MARIO: 3-DOF Manipulator</span>
+            </div>
+          </div>
+          <div class="entry-details" id="details-4">
+            <p>
+              Worked on a 3-DOF robotic arm project with ROS2 and Gazebo.
+              Interfaced with
+              microcontrollers via micro-ROS.
+            </p>
+            <ul>
+              <li>forward and inverse kinematics implemented.</li>
+              <li>simulation with ROS2 Humble and Gazebo.</li>
+              <li>communication using micro-ROS.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="journey-entry">
+          <div
+            class="entry-summary"
+            aria-expanded="false"
+            aria-controls="details-5"
+          >
+            <div class="summary-content">
+              <span class="date">2024</span>
+              <span class="title">LQR Balancer Bot V1</span>
+            </div>
+          </div>
+          <div class="entry-details" id="details-5">
+            <p>
+              This was the start of my journey in controls
+            </p>
+            <ul>
+              <li>
+                Designed and implemented an LQR controller in ESP-IDF
+              </li>
+              <li>
+                Stepper motor control with FreeRTOS on ESP32 and
+                MPU6050 feedback.
+              </li>
+              <li>Simulated and tuned system parameters in MATLAB.</li>
+            </ul>
+            <p>
+              <a href="./blogs/1_lqr.html">Read the blog post</a> |
+              <a href="./projects/lqr.html">View Project Page</a>
+            </p>
+          </div>
+        </div>
+        <div class="journey-entry">
+          <div
+            class="entry-summary"
+            aria-expanded="false"
+            aria-controls="details-6"
+          >
+            <div class="summary-content">
+              <span class="date">2024-25</span>
+              <span class="title">e-Yantra Warehouse Drone Competition</span>
+            </div>
+          </div>
+          <div class="entry-details" id="details-6">
+            <p>
+              Participated in the e-Yantra Robotics Competition (eYRC), working
+              on autonomous drone navigation and vision tasks.
+            </p>
+            <ul>
+              <li>Implemented drone control and A* path planning in ROS2.</li>
+              <li>Used OpenCV for Aruco Marker-based object detection.</li>
+              <li>Reached top 30 out of 600+ teams; advanced to Stage 2.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="journey-entry">
+          <div
+            class="entry-summary"
+            aria-expanded="false"
+            aria-controls="details-7"
+          >
+            <div class="summary-content">
+              <span class="date">Side Quests</span>
+              <span class="title">Teaching, Tinkering & Sharing</span>
+            </div>
+          </div>
+          <div class="entry-details" id="details-7">
+            <ul>
+              <li>
+                Fixed and revived an old 3D printer —
+                <a href="./blogs/2_3dp.html">Read the blog</a>
+              </li>
+              <li>
+                Taught Control (LQR, MPC), OpenCV, and Mechanical Design to
+                juniors.
+              </li>
+              <li>
+                Conducted workshops and study sessions on Control and Robotics.
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="journey-entry">
+          <div
+            class="entry-summary"
+            aria-expanded="false"
+            aria-controls="details-8"
+          >
+            <div class="summary-content">
+              <span class="date">Next?</span>
+              <span class="title">What’s Cooking</span>
+            </div>
+          </div>
+          <div class="entry-details" id="details-8">
+            <p>
+              Awe for how mathematical models can describe and influence
+              physical systems. <br>Projects in mind —
+              from theory to hardware.
+            </p>
+            <ul>
+              <li>
+                Hoping to bridge Julia-based computation with real-world
+                implementation.
+              </li>
+              <li>
+                MPPI.
+              </li>
+              <li>
+                MORE RL MORE MODELS.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Add more journey entries here -->
+        <!-- Example Structure:
+            <div class="journey-entry">
+                <div class="entry-summary" aria-expanded="false" aria-controls="details-X">
+                    <div class="summary-content">
+                        <span class="date">Some Date</span>
+                        <span class="title">Another Milestone</span>
+                    </div>
+                </div>
+                <div class="entry-details" id="details-X">
+                    <p>Details about this milestone...</p>
+                    <ul>
+                        <li>Point 1</li>
+                        <li>Point 2</li>
+                    </ul>
+                </div>
+            </div>
+            -->
+      </div>
+      <!-- /.journey-container -->
+
+      <footer>
+        <a href="./index.html" class="back-link">< Back Home // 戻る</a>
+      </footer>
+    </div>
+    <!-- /.container -->
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const journeyEntries = document.querySelectorAll(".journey-entry"); // Select the parent entries
+
+        journeyEntries.forEach((entry) => {
+          // Iterate over each entry
+          const summary = entry.querySelector(".entry-summary");
+          const details = entry.querySelector(".entry-details");
+
+          if (!summary || !details) {
+            // Safety check
+            console.error(
+              "Could not find summary or details for an entry:",
+              entry
+            );
+            return;
+          }
+
+          // --- Click Listener ---
+          summary.addEventListener("click", () => {
+            const isExpanded = entry.classList.contains("active");
+
+            // Basic Accessibility Update
+            summary.setAttribute("aria-expanded", !isExpanded);
+
+            if (isExpanded) {
+              // Collapse
+              details.style.maxHeight = "0px";
+              entry.classList.remove("active");
+            } else {
+              // Expand
+              entry.classList.add("active");
+              // Set max-height to the actual height of the content
+              // Use requestAnimationFrame to ensure layout is calculated before setting maxHeight
+              requestAnimationFrame(() => {
+                details.style.maxHeight = details.scrollHeight + "px";
+              });
+
+              // --- Optional Accordion Behavior ---
+              // Uncomment this block if you want only one item open at a time
+              /*
+                        journeyEntries.forEach(otherEntry => {
+                            if (otherEntry !== entry && otherEntry.classList.contains('active')) {
+                                const otherSummary = otherEntry.querySelector('.entry-summary');
+                                const otherDetails = otherEntry.querySelector('.entry-details');
+                                otherDetails.style.maxHeight = '0px';
+                                otherEntry.classList.remove('active');
+                                if (otherSummary) {
+                                    otherSummary.setAttribute('aria-expanded', 'false');
+                                }
+                            }
+                        });
+                        */
+            }
+          });
+
+          // --- Resize Listener ---
+          // Correctly scoped resize listener for *this specific entry*
+          const handleResize = () => {
+            if (entry.classList.contains("active")) {
+              // Recalculate maxHeight only if this specific entry is active
+              // Use rAF here too for consistency and potential layout updates
+              requestAnimationFrame(() => {
+                // Temporarily remove max-height to measure natural height correctly
+                const currentMaxHeight = details.style.maxHeight;
+                details.style.maxHeight = "none";
+                const newScrollHeight = details.scrollHeight;
+                details.style.maxHeight = currentMaxHeight; // Put it back quickly
+
+                // Set the potentially new scrollHeight
+                details.style.maxHeight = newScrollHeight + "px";
+              });
+            }
+          };
+
+          window.addEventListener("resize", handleResize);
+
+          // Optional: Clean up listener if the element is removed from DOM later
+          // entry.addEventListener('removed', () => window.removeEventListener('resize', handleResize));
+        }); // End forEach loop
+      }); // End DOMContentLoaded
+
+      document.addEventListener("DOMContentLoaded", () => {
+        // --- Static ASCII Art Placement ---
+
+        // Store the multi-line ASCII art string accurately
+        const asciiArt = `⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠈⠉⢻⣿⣿⡿⠉⠁⠀⠀⠀⢀⣤⣶⠿⠛⠻⢷⣦⣄⡀⠀⠀⠀⠀⠀⠀⠉⠹⣿⣿⣿⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⣰⡿⡀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⢸⣿⣿⡇⠀⠀⠀⠀⣠⣿⣿⠃⠀⠀⠀⠀⠻⣿⣧⡀⠀⠀⠀⠀⠀⠀⠠⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣻⣇⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⢸⣿⣿⡇⠀⠀⠀⢠⣿⣿⠃⠀⠀⠀⠀⠀⠀⢹⣿⣷⡀⠀⠀⠀⠀⠀⠐⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣷⣻⢾⡀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⢸⣿⣿⡇⠀⠀⠀⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⡇⠀⠀⠀⠀⠀⠈⣿⣿⣿⠀⠀⠙⠻⢟⣿⣻⣟⣿⣻⢾⡽⣯⣟⣿⣻⣟⣿⡻⠏⠁
+⠀⠀⠀⠀⠀⢸⣿⣿⡇⠀⠀⠀⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⡇⠀⠀⠀⠀⠀⢈⣿⣿⣿⠀⠀⠀⠀⠈⠑⠿⣞⡷⣯⢿⣽⣳⣟⣾⡳⠟⠈⠀⠀⠀
+⠀⠀⠀⠀⠀⢸⣿⣿⡇⠀⠀⠀⢹⣿⣿⡀⠀⠀⠀⠀⠀⠀⢸⣿⣿⠃⠀⠀⠀⠀⠀⠠⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⣸⢿⣽⣻⣞⣷⣻⣞⡅⠀⠀⠀⠀⠀
+⠀⣠⣄⠀⠀⢸⣿⣿⡇⠀⠀⠀⠈⢿⣿⣇⠀⠀⠀⠀⠀⢀⣾⣿⡟⠀⠀⣠⣤⡀⠀⠠⣿⣿⣿⠀⠀⠀⠀⠀⠀⢀⣿⢾⡽⣯⢿⡽⣯⣟⣇⠀⠀⠀⠀⠀
+⢸⣿⣿⠁⠀⢸⣿⣿⠇⠀⠀⠀⠀⠀⠛⢿⣷⣄⣀⣀⣤⣾⡿⠋⠀⠀⠀⣿⣿⠇⠀⢐⣿⣿⡏⠀⠀⠀⠀⠀⠀⣾⣽⠯⠋⠁⠀⠉⠳⣟⣾⡄⠀⠀⠀⠀
+⠀⠻⢷⣄⣀⣾⠿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠉⠀⠀⠀⠀⠀⠀⠙⠿⣄⣀⣼⡿⠋⠀⠀⠀⠀⠀⠀⡠⠟⠁⠀⠀⠀⠀⠀⠀⠀⠙⠫⡀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⡀⡠⡄⣠⠠⠄⠄⣀⠀⡀⣄⡄⡀⣀⣀⣀⢀⡀⠀⣠⢀⠄⡄⢀⡀⡀⠀⢀⠀⡀⣀⠀⣠⢀⡀⡀⢀⢠⢀⡀⠄⡠⢀⡀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠁⠈⠀⠁⠈⠁⠀⠉⠀⠉⠈⠁⠁⠉⠈⠈⠀⠁⠀⠉⠀⠁⠀⠈⠀⠉⢠⠈⠉⠀⠁⠀⠁⠀⠀⢡⠈⠈⠈⠁⠉⠈⠀⠁⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢑⠜⠀⠠⡄⠀⠑⠌⠀⠠⠤⠀⡨⢁⠄⡽⠝⠁⡳⢻⡄⡒⢡⠂⢀⠁⡇⣟⢺⡖⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠁⠈⠀⠈⠀⠀⠀⠉⠀⠈⠀⠁⠁⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀`;
+
+        // Estimate art dimensions roughly (adjust if needed)
+        const artLines = asciiArt.split("\n");
+        const artHeightApprox = artLines.length * 7 * 0.8; // lines * fontSize * lineHeight
+        const artWidthApprox =
+          artLines.reduce((max, line) => Math.max(max, line.length), 0) *
+          12 *
+          0.6; // maxChars * fontSize * fontWidthRatio
+
+        const numInstances = Math.floor(Math.random() * 4) + 5; // Random number between 2 and 5
+
+        for (let i = 0; i < numInstances; i++) {
+          const preElement = document.createElement("pre");
+          preElement.classList.add("static-ascii-art");
+          preElement.textContent = asciiArt;
+
+          // Calculate random position, trying not to place it completely off-screen
+          // Allow some overlap off the edges for a more natural background feel
+          const maxTop = window.innerHeight - artHeightApprox * 0.3; // Allow bottom 30% to be off screen
+          const maxLeft = window.innerWidth - artWidthApprox * 0.3; // Allow right 30% to be off screen
+          const minTop = -artHeightApprox * 0.7; // Allow top 70% to be off screen
+          const minLeft = -artWidthApprox * 0.7; // Allow left 70% to be off screen
+
+          const randomTop = Math.random() * (maxTop - minTop) + minTop;
+          const randomLeft = Math.random() * (maxLeft - minLeft) + minLeft;
+
+          preElement.style.top = `${randomTop}px`;
+          preElement.style.left = `${randomLeft}px`;
+          // Optional: Add random slight rotation or opacity variation
+          // preElement.style.transform = `rotate(${Math.random() * 4 - 2}deg)`;
+          // preElement.style.opacity = Math.random() * 0.05 + 0.1; // Random opacity between 0.1 and 0.15
+
+          document.body.appendChild(preElement);
+        }
+      });
+    </script>
+  </body>
+</html>

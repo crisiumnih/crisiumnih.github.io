@@ -7,171 +7,340 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>
-  <title>LQR Balancer</title>
+  <!-- Removed MathJax as it wasn't used -->
+  <title>LQR Balancer // LQR バランサー</title> <!-- Added Japanese Subtitle -->
   <style>
     body {
-      background-color: #353340;
-      color: #ffffff;
+      background-color: #F5ECCE; /* Sandy Beige */
+      color: #4A2E20; /* Dark Brown */
       font-family: 'Fira Code', monospace;
       margin: 0;
       padding: 0;
     }
 
     .container {
-      max-width: 60%;
-      margin: 0 auto;
+      max-width: 70%; /* Slightly wider */
+      margin: 40px auto;
       padding: 20px;
       text-align: left;
     }
 
     h1 {
-      color: #FF66CC;
+      font-family: 'Fira Code', monospace; /* Keep Fira Code */
+      font-weight: 700; /* Bolder */
+      font-size: 2.8em; /* Larger size */
+      color: #8A2BE2; /* Purple */
+      text-shadow: 2px 2px 0px #A3E000; /* SBR Green shadow */
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 10px; /* Space before GitHub link */
+      position: relative;
+    }
+    /* Optional: Add Japanese text like other pages */
+     h1::after {
+        content: 'LQR バランサー'; /* Japanese for 'LQR Balancer' */
+        font-family: sans-serif; /* Standard font for Japanese */
+        font-size: 0.35em;
+        color: #FF66CC; /* Pink */
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0.8;
+    }
+
+
+    header {
+        margin-bottom: 40px; /* Space below header */
+    }
+
+    /* Section Titles */
+    h2.section-title {
+        font-family: 'Fira Code', monospace;
+        font-weight: 600;
+        font-size: 1.8em;
+        color: #A3E000; /* SBR Green */
+        text-shadow: 1px 1px 0px #4A2E20; /* Dark shadow */
+        text-align: center;
+        margin: 50px 0 30px 0; /* Add vertical spacing */
     }
 
     .spec-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+      gap: 30px; /* Increased gap */
       margin: 30px 0;
     }
 
     .spec-card {
-      background-color: #494759;
-      padding: 20px;
-      border-radius: 8px;
-      border-left: 4px solid #70FFAD;
+      background-color: rgba(255, 255, 255, 0.7); /* Light transparent bg */
+      padding: 25px;
+      border-radius: 0px; /* Sharp corners */
+      border: 3px solid #4A2E20; /* Dark Brown border */
+      box-shadow: 6px 6px 0px #8A2BE2; /* Purple offset shadow */
+      /* Removed border-left */
     }
 
     .spec-card h3 {
-      color: #FF66CC;
+      color: #FF66CC; /* Pink */
       margin-top: 0;
+      font-weight: 600;
+      font-size: 1.4em;
+      text-shadow: 1px 1px 0px #4A2E20; /* Dark shadow */
+      margin-bottom: 15px;
     }
 
+    .spec-card ul {
+        list-style: none; /* Remove default bullets */
+        padding: 0;
+        margin: 0;
+    }
+     .spec-card li {
+         margin-bottom: 8px;
+         position: relative;
+         padding-left: 20px; /* Space for custom bullet */
+     }
+     .spec-card li::before { /* Custom bullet */
+         content: '>';
+         position: absolute;
+         left: 0;
+         color: #FF66CC; /* Pink bullet */
+         font-weight: bold;
+     }
+
+
+    /* Timeline Styling */
     .progress-timeline {
       display: flex;
       justify-content: space-between;
-      margin: 40px 0;
+      margin: 50px 0; /* Adjusted margin */
       position: relative;
+      padding: 0 15px; /* Add padding to prevent circles hitting edge */
     }
 
     .timeline-stage {
       text-align: center;
       z-index: 1;
+      flex: 1; /* Allow stages to space out */
+      position: relative;
     }
 
     .timeline-circle {
-      width: 30px;
-      height: 30px;
-      background-color: #494759;
+      width: 28px; /* Slightly smaller */
+      height: 28px;
+      background-color: #F5ECCE; /* Match page background */
       border-radius: 50%;
       margin: 0 auto 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 2px solid #70FFAD;
+      border: 3px solid #4A2E20; /* Dark border */
+      font-weight: bold;
+      color: #4A2E20; /* Dark checkmark */
     }
 
     .completed .timeline-circle {
-      background-color: #70FFAD;
+      border-color: #A3E000; /* SBR Green border */
+      background-color: #A3E000; /* SBR Green fill */
+      color: #4A2E20; /* Dark checkmark */
+    }
+    .timeline-stage p {
+        font-size: 0.9em;
+        font-weight: 500;
+        color: #4A2E20;
     }
 
     .timeline-connector {
       position: absolute;
-      top: 15px;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background-color: #70FFAD;
+      top: 14px; /* Align with center of circles */
+      left: 5%; /* Start/end connector inside the container */
+      right: 5%;
+      height: 3px; /* Thicker connector */
+      background-color: #4A2E20; /* Dark connector */
       z-index: 0;
     }
 
+
+    /* Approach Comparison Styling */
+    .approach-comparison {
+      margin: 60px 0; /* More margin */
+    }
+
+    .approach-columns {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive */
+      gap: 30px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .approach-box {
+      background-color: rgba(255, 255, 255, 0.7);
+      border-radius: 0px; /* Sharp corners */
+      padding: 25px;
+      position: relative;
+      border: 3px solid #4A2E20; /* Dark border */
+    }
+    /* Different shadows for distinction */
+    .current-approach { box-shadow: 6px 6px 0px #FF66CC; /* Pink Shadow */ }
+    .new-approach { box-shadow: 6px 6px 0px #A3E000; /* Green Shadow */ }
+
+
+    .approach-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+      border-bottom-width: 3px; /* Thicker border */
+      border-bottom-style: solid;
+    }
+    /* Match border color to shadow */
+    .current-approach .approach-header { border-bottom-color: #FF66CC; }
+    .new-approach .approach-header { border-bottom-color: #A3E000; }
+
+    .approach-header h3 {
+        margin: 0;
+        font-weight: 600;
+        font-size: 1.4em;
+        text-shadow: 1px 1px 0px #4A2E20;
+    }
+    /* Match title color to border/shadow */
+     .current-approach .approach-header h3 { color: #FF66CC; }
+     .new-approach .approach-header h3 { color: #A3E000; }
+
+
+    .status-indicator { /* Use star or different shape? Let's keep circle for now */
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 2px solid #4A2E20; /* Add dark border */
+    }
+    /* Match indicator background to title/border/shadow */
+    .current-approach .status-indicator { background-color: #FF66CC; }
+    .new-approach .status-indicator { background-color: #A3E000; }
+
+    .approach-box ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .approach-box li {
+      padding: 10px 0 10px 20px; /* Indent text */
+      border-bottom: 1px dashed rgba(74, 46, 32, 0.3); /* Lighter dashed border */
+      position: relative;
+      font-size: 1em;
+    }
+     .approach-box li::before { /* Custom bullet matching box color */
+         content: '»'; /* Double arrow */
+         position: absolute;
+         left: 0;
+         font-weight: bold;
+     }
+     .current-approach li::before { color: #FF66CC; } /* Pink bullet */
+     .new-approach li::before { color: #A3E000; } /* Green bullet */
+
+    .approach-box li:last-child {
+      border-bottom: none;
+    }
+
+
+    /* Navigation Buttons */
     .nav-buttons {
       display: flex;
       justify-content: center;
-      gap: 20px;
-      margin-top: 40px;
+      gap: 30px; /* More gap */
+      margin-top: 60px; /* More margin */
     }
 
     .nav-button {
-      background-color: #494759;
-      color: #70FFAD;
-      padding: 12px 24px;
-      border-radius: 5px;
+      background-color: transparent; /* Transparent background */
+      color: #8A2BE2; /* Purple text */
+      padding: 10px 20px;
+      border-radius: 0px; /* Sharp corners */
       text-decoration: none;
-      border: 1px solid #70FFAD;
-      transition: all 0.3s ease;
+      border: 2px solid #FF66CC; /* Pink border */
+      font-weight: 600;
+      font-size: 1.1em;
+      transition: all 0.2s ease-in-out;
     }
 
     .nav-button:hover {
-      background-color: #70FFAD;
-      color: #353340;
+      background-color: #FF66CC; /* Pink background on hover */
+      color: #F5ECCE; /* Light text on hover */
+      border-color: #FF66CC; /* Ensure border color stays */
+      box-shadow: 3px 3px 0px #8A2BE2; /* Purple shadow on hover */
+      transform: translate(-1px, -1px); /* Slight lift effect */
     }
 
+    /* GitHub Link */
     .github-link {
-      color: #70FFAD;
+      color: #00BFFF; /* Blue Link */
       text-decoration: none;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      margin: 20px 0;
+      margin: 20px 0 30px 0; /* Adjust margin */
+      font-weight: 600;
+      font-size: 1.1em;
     }
 
     .github-link:hover {
       text-decoration: underline;
+      color: #FF66CC; /* Pink on hover */
+    }
+    .github-link svg {
+        stroke: #00BFFF; /* Blue Icon */
+        transition: stroke 0.2s;
+    }
+     .github-link:hover svg {
+         stroke: #FF66CC; /* Pink icon on hover */
+     }
+
+         /* Styling for the CURRENT timeline stage */
+    .timeline-stage.current .timeline-circle {
+      border-color: #8A2BE2; /* Purple border */
+      /* Optional: Add subtle animation */
+      /* animation: pulse 1.5s infinite ease-in-out; */
+    }
+    .timeline-stage.current p {
+        font-weight: bold; /* Make current stage text bold */
+        color: #8A2BE2; /* Purple text */
     }
 
-    .approach-comparison {
-  margin: 50px 0;
-}
+    /* Optional pulse animation */
+    /* @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(138, 43, 226, 0.5); }
+      70% { box-shadow: 0 0 0 8px rgba(138, 43, 226, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(138, 43, 226, 0); }
+    } */
 
-.approach-columns {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  max-width: 900px;
-  margin: 0 auto;
-}
 
-.approach-box {
-  background-color: #494759;
-  border-radius: 8px;
-  padding: 25px;
-  position: relative;
-}
-
-.approach-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 15px;
-  margin-bottom: 15px;
-}
-
-.status-indicator {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-}
-
-.approach-box ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.approach-box li {
-  padding: 8px 0;
-  border-bottom: 1px solid #353340;
-}
-
-.approach-box li:last-child {
-  border-bottom: none;
-}
-
+    /* Styling for completed tasks within the approach list */
+    .approach-box li.task-done::before {
+        content: '✓ '; /* Add checkmark and space */
+        color: #A3E000; /* Use the green color */
+        font-weight: bold;
+        /* Overwrite the default '»' bullet for these items */
+        position: absolute;
+        left: 0;
+    }
+    /* Adjust padding for items with checkmarks if needed */
+    .approach-box li.task-done {
+        padding-left: 25px; /* Ensure space for checkmark */
+        /* Optional: slightly different text style */
+        /* color: #3a5e00; */ /* Darker green */
+    }
+    /* Keep default bullet for non-done tasks */
+    .approach-box li:not(.task-done)::before {
+         content: '»'; /* Double arrow */
+         position: absolute;
+         left: 0;
+         font-weight: bold;
+     }
+     .current-approach li:not(.task-done)::before { color: #FF66CC; } /* Pink bullet */
+     .new-approach li:not(.task-done)::before { color: #A3E000; } /* Green bullet */
 
   </style>
 </head>
@@ -181,8 +350,8 @@
     <header>
       <h1>LQR Balancer</h1>
       <a href="https://github.com/crisiumnih/LQR_Balancer" class="github-link" target="_blank">
-        view on github
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#70FFAD" stroke-width="2">
+        View Code // コードを見る <!-- Added Japanese -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
         </svg>
       </a>
@@ -190,85 +359,84 @@
 
     <div class="spec-grid">
       <div class="spec-card">
-        <h3>hardware specs</h3>
+        <h3>Hardware // ハードウェア</h3>
         <ul>
           <li>NEMA17 Stepper Motors</li>
           <li>ESP32-WROOM Controller</li>
           <li>MPU6050 IMU</li>
-          <li>Modified wall-e frame</li>
+          <li>Modified WALL-E Frame</li>
         </ul>
       </div>
 
       <div class="spec-card">
-        <h3>control parameters</h3>
+        <h3>Control // コントロール</h3>
         <ul>
-          <li>LQR</li>
-          <li>MATLAB to verify</li>
-          <li>Complementary filter</li>
+          <li>LQR Algorithm</li>
+          <li>MATLAB Verification</li>
+          <li>Complementary Filter</li>
+          <li>(Soon: Kalman Filter)</li>
         </ul>
       </div>
     </div>
 
-    <h2 style="color: #70FFAD; text-align: center;">Project Timeline</h2>
+    <h2 class="section-title">Project Timeline // タイムライン</h2>
     <div class="progress-timeline">
       <div class="timeline-connector"></div>
       <div class="timeline-stage completed">
         <div class="timeline-circle">✓</div>
-        <p>Modeling and Sim</p>
+        <p>Modeling & Sim</p>
       </div>
       <div class="timeline-stage completed">
         <div class="timeline-circle">✓</div>
-        <p>First iteration</p>
+        <p>First Iteration</p>
       </div>
-      <div class="timeline-stage">
-        <div class="timeline-circle"></div>
-        <p>Starting again</p>
+      <div class="timeline-stage current">
+        <div class="timeline-circle">!</div>
+        <p>Starting Again</p>
       </div>
       <div class="timeline-stage">
         <div class="timeline-circle"></div>
         <p>Testing</p>
       </div>
     </div>
+
     <section class="approach-comparison">
-        <h2 style="color: #70FFAD; text-align: center; margin: 40px 0;">Development Approaches</h2>
-        
+        <h2 class="section-title">Development Approaches // アプローチ</h2>
+
         <div class="approach-columns">
           <div class="approach-box current-approach">
-            <div class="approach-header" style="border-bottom: 2px solid #FF66CC;">
-              <h3 style="color: #FF66CC;">Flaws in Current Implementation</h3>
-              <div class="status-indicator" style="background-color: #FF66CC;"></div>
+            <div class="approach-header">
+              <h3>Flaws in V1</h3>
+              <div class="status-indicator"></div>
             </div>
             <ul>
-              
-              <li> Inadequate frequency/sample rate analysis</li>
-      <li> Superficial stepper motor understanding</li>
-      <li> Limited stepper control methods explored</li>
-      <li> Primitive complementary filter implementation</li>
+              <li>Inadequate frequency analysis</li>
+              <li>Superficial stepper understanding</li>
+              <li>Limited stepper control methods</li>
+              <li>Primitive complementary filter</li>
             </ul>
           </div>
-      
+
           <div class="approach-box new-approach">
-            <div class="approach-header" style="border-bottom: 2px solid #70FFAD;">
-              <h3 style="color: #70FFAD;">Ground-Up Reconstruction</h3>
-              <div class="status-indicator" style="background-color: #70FFAD;"></div>
+            <div class="approach-header">
+              <h3>Ground-Up Reconstruction (V2)</h3>
+              <div class="status-indicator"></div>
             </div>
             <ul>
-              <li>Complete system redesign with fundamental approach</li>
-              <li>Custom stepper library</li>
-              <li>Kalman filter implementation</li>
-              <li>Continuous verification of first principles</li>
-              <li>Julia just becauses its cool </li>
+              <li>Fundamental system redesign</li>
+              <li class="task-done">Custom stepper library</li>
+              <li class="task-done">Kalman filter implementation</li>
+              <li>Continuous first principles verification</li>
+              <li>Julia (because it's cool ✨)</li>
             </ul>
           </div>
         </div>
-      
-        
-      </section>
-    
+
+    </section>
 
     <div class="nav-buttons">
-      <a href="../projects.html" class="nav-button">all projects</a>
-      <a href="../index.html" class="nav-button">home</a>
+      <a href="../projects.html" class="nav-button">« All Projects</a>
+      <a href="../index.html" class="nav-button">« Home</a>
     </div>
   </div>
 </body>
