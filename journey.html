@@ -16,13 +16,13 @@
         color: #4a2e20; /* Dark Brown */
         font-family: "Fira Code", monospace;
         margin: 0;
-        padding: 40px 20px; /* Add padding top/bottom */
+        padding: 0; /* Remove body padding */
         line-height: 1.7;
       }
 
       .container {
         max-width: 750px; /* Consistent width, good for reading */
-        margin: 0 auto;
+        margin: 40px auto; /* Vertical spacing, centered */
         padding: 20px;
       }
 
@@ -52,16 +52,7 @@
       .journey-container {
         position: relative;
         /* Optional: Add a central timeline line */
-        /* &::before {
-                content: '';
-                position: absolute;
-                top: 10px;
-                bottom: 10px;
-                left: 20px; // Adjust position
-                width: 3px;
-                background-color: rgba(74, 46, 32, 0.3); // Faded dark brown
-                z-index: 0;
-            } */
+        /* &::before { ... } */
       }
 
       .journey-entry {
@@ -71,7 +62,7 @@
         margin-bottom: 30px; /* Space between entries */
         position: relative;
         z-index: 1; /* Ensure entries are above timeline line if used */
-        transition: box-shadow 0.3s ease-in-out; /* Smooth shadow transition */
+        transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out; /* Smooth shadow transition + lift */
       }
 
       /* Alternating Shadows */
@@ -120,7 +111,7 @@
         font-size: 2em;
         font-weight: bold;
         color: #a3e000; /* SBR Green indicator */
-        transition: transform 0.3s ease-out;
+        transition: transform 0.3s ease-out, color 0.3s ease-out;
         flex-shrink: 0; /* Prevent indicator from shrinking */
       }
 
@@ -133,30 +124,34 @@
       .entry-details {
         max-height: 0;
         overflow: hidden;
-        transition: max-height 0.5s ease-out, padding 0.5s ease-out; /* Smooth transition */
+        transition: max-height 0.5s ease-out, padding 0.5s ease-out, border-top 0.5s ease-out; /* Smooth transition */
         padding: 0 25px; /* Horizontal padding, vertical padding added on expansion */
-        border-top: 1px dashed rgba(74, 46, 32, 0.3); /* Separator line */
+        border-top: 1px dashed transparent; /* Start transparent for transition */
       }
 
       .journey-entry.active .entry-details {
         /* max-height is set by JS using scrollHeight */
         padding: 20px 25px; /* Add vertical padding when open */
+        border-top-color: rgba(74, 46, 32, 0.3); /* Fade in separator line */
       }
 
       /* Styling for content within details */
       .entry-details p {
         margin-bottom: 1em;
         color: #4a2e20;
+        font-size: 1em; /* Adjust font size for readability */
+        line-height: 1.6;
       }
       .entry-details ul {
         list-style: none;
         padding-left: 0;
-        margin-left: 20px;
+        margin-left: 20px; /* Indent list */
       }
       .entry-details li {
         margin-bottom: 8px;
         position: relative;
         padding-left: 20px;
+        font-size: 1em; /* Adjust font size */
       }
       .entry-details li::before {
         content: ">";
@@ -169,6 +164,7 @@
         color: #00bfff; /* Blue links */
         text-decoration: none;
         font-weight: 600;
+        word-break: break-word; /* Allow long links to wrap */
       }
       .entry-details a:hover {
         color: #ff66cc; /* Pink hover */
@@ -197,6 +193,7 @@
         color: #f5ecce; /* Light text on hover */
         text-decoration: none;
       }
+
       /* Static ASCII Art Background Elements */
       .static-ascii-art {
         position: fixed; /* Position relative to viewport */
@@ -204,19 +201,73 @@
         font-family: "Fira Code", monospace;
         font-size: 12px; /* VERY small font size for background texture */
         line-height: 0.8; /* Tight line height */
-        color: rgba(
-          74,
-          46,
-          32,
-          0.32
-        ); /* Very faint dark brown - ADJUST OPACITY */
+        color: rgba(74, 46, 32, 0.2); /* Very faint dark brown - ADJUST OPACITY */
         white-space: pre; /* Preserve formatting */
         pointer-events: none;
         user-select: none;
         overflow: hidden; /* Hide parts that go off-screen */
-        /* Add transition for potential future effects */
-        /* transition: opacity 0.5s ease-in-out; */
+        opacity: 0; /* Start hidden, fade in with JS */
+        transition: opacity 1.5s ease-in-out;
       }
+
+      /* Responsive adjustments for smaller screens */
+      @media (max-width: 768px) {
+          body {
+              padding: 0 5px; /* Add small horizontal padding to body */
+          }
+          .container {
+              max-width: 100%; /* Allow container to fill width */
+              margin: 20px auto; /* Reduce vertical margin */
+              padding: 10px; /* Reduce container padding */
+          }
+          h1 {
+              font-size: 2.2em; /* Reduce heading size */
+              margin-bottom: 40px;
+          }
+          h1::after {
+              font-size: 0.3em;
+              bottom: -15px;
+          }
+          .journey-entry {
+              margin-bottom: 20px; /* Reduce space between entries */
+              box-shadow: 4px 4px 0px #ff66cc; /* Reduce shadow offset */
+          }
+          .journey-entry:nth-child(even) {
+              box-shadow: 4px 4px 0px #8a2be2; /* Reduce shadow offset */
+          }
+          .journey-entry:hover {
+               box-shadow: 6px 6px 0px #a3e000; /* Adjust hover shadow */
+          }
+          .entry-summary {
+              padding: 15px 20px; /* Adjust padding */
+          }
+          .entry-summary .title {
+              font-size: 1.2em; /* Reduce title size */
+          }
+          .entry-summary::after {
+              font-size: 1.8em; /* Reduce indicator size */
+          }
+          .journey-entry.active .entry-details {
+              padding: 15px 20px; /* Adjust padding */
+          }
+           .entry-details p, .entry-details li {
+               font-size: 0.95em; /* Slightly smaller text */
+               line-height: 1.5;
+           }
+           footer {
+                margin-top: 30px;
+                padding-top: 15px;
+            }
+           .back-link {
+                font-size: 1.1em;
+                padding: 6px 12px;
+            }
+           /* Hide ASCII art on small screens to save space/performance */
+           .static-ascii-art {
+               display: none;
+           }
+      }
+
     </style>
   </head>
   <body>
@@ -454,23 +505,6 @@
         </div>
 
         <!-- Add more journey entries here -->
-        <!-- Example Structure:
-            <div class="journey-entry">
-                <div class="entry-summary" aria-expanded="false" aria-controls="details-X">
-                    <div class="summary-content">
-                        <span class="date">Some Date</span>
-                        <span class="title">Another Milestone</span>
-                    </div>
-                </div>
-                <div class="entry-details" id="details-X">
-                    <p>Details about this milestone...</p>
-                    <ul>
-                        <li>Point 1</li>
-                        <li>Point 2</li>
-                    </ul>
-                </div>
-            </div>
-            -->
       </div>
       <!-- /.journey-container -->
 
@@ -482,90 +516,77 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        const journeyEntries = document.querySelectorAll(".journey-entry"); // Select the parent entries
+        const journeyEntries = document.querySelectorAll(".journey-entry");
 
         journeyEntries.forEach((entry) => {
-          // Iterate over each entry
           const summary = entry.querySelector(".entry-summary");
           const details = entry.querySelector(".entry-details");
 
           if (!summary || !details) {
-            // Safety check
-            console.error(
-              "Could not find summary or details for an entry:",
-              entry
-            );
+            console.error("Missing summary or details:", entry);
             return;
           }
 
-          // --- Click Listener ---
           summary.addEventListener("click", () => {
             const isExpanded = entry.classList.contains("active");
-
-            // Basic Accessibility Update
             summary.setAttribute("aria-expanded", !isExpanded);
 
             if (isExpanded) {
-              // Collapse
               details.style.maxHeight = "0px";
               entry.classList.remove("active");
             } else {
-              // Expand
               entry.classList.add("active");
-              // Set max-height to the actual height of the content
-              // Use requestAnimationFrame to ensure layout is calculated before setting maxHeight
               requestAnimationFrame(() => {
                 details.style.maxHeight = details.scrollHeight + "px";
               });
-
-              // --- Optional Accordion Behavior ---
-              // Uncomment this block if you want only one item open at a time
+              // Optional Accordion Behavior (uncomment if needed)
               /*
                         journeyEntries.forEach(otherEntry => {
                             if (otherEntry !== entry && otherEntry.classList.contains('active')) {
-                                const otherSummary = otherEntry.querySelector('.entry-summary');
-                                const otherDetails = otherEntry.querySelector('.entry-details');
-                                otherDetails.style.maxHeight = '0px';
-                                otherEntry.classList.remove('active');
-                                if (otherSummary) {
-                                    otherSummary.setAttribute('aria-expanded', 'false');
-                                }
+                                // ... collapse otherEntry ...
                             }
                         });
                         */
             }
           });
 
-          // --- Resize Listener ---
-          // Correctly scoped resize listener for *this specific entry*
+          // Resize Listener
+          let resizeTimeout;
           const handleResize = () => {
-            if (entry.classList.contains("active")) {
-              // Recalculate maxHeight only if this specific entry is active
-              // Use rAF here too for consistency and potential layout updates
-              requestAnimationFrame(() => {
-                // Temporarily remove max-height to measure natural height correctly
-                const currentMaxHeight = details.style.maxHeight;
-                details.style.maxHeight = "none";
-                const newScrollHeight = details.scrollHeight;
-                details.style.maxHeight = currentMaxHeight; // Put it back quickly
-
-                // Set the potentially new scrollHeight
-                details.style.maxHeight = newScrollHeight + "px";
-              });
-            }
+             clearTimeout(resizeTimeout);
+             resizeTimeout = setTimeout(() => {
+                 if (entry.classList.contains("active")) {
+                     requestAnimationFrame(() => {
+                         // Temporarily remove max-height to measure natural height correctly
+                         details.style.transition = 'none'; // Disable transition during calculation
+                         details.style.maxHeight = 'none';
+                         const newScrollHeight = details.scrollHeight;
+                         details.style.maxHeight = newScrollHeight + 'px';
+                         // Re-enable transition after a short delay
+                         setTimeout(() => {
+                             details.style.transition = '';
+                         }, 50);
+                     });
+                 }
+             }, 150); // Debounce resize events
           };
-
           window.addEventListener("resize", handleResize);
+        });
 
-          // Optional: Clean up listener if the element is removed from DOM later
-          // entry.addEventListener('removed', () => window.removeEventListener('resize', handleResize));
-        }); // End forEach loop
-      }); // End DOMContentLoaded
+        // --- Static ASCII Art Fade-In ---
+        const asciiArtElements = document.querySelectorAll(".static-ascii-art");
+         // Check if media query matches (art is not hidden by CSS)
+         if (window.matchMedia("(min-width: 769px)").matches) {
+             asciiArtElements.forEach((el, index) => {
+                // Optional: Stagger the fade-in effect
+                 setTimeout(() => {
+                     el.style.opacity = '1';
+                 }, index * 100); // Stagger by 100ms
+             });
+         }
 
-      document.addEventListener("DOMContentLoaded", () => {
-        // --- Static ASCII Art Placement ---
 
-        // Store the multi-line ASCII art string accurately
+         // ---- ASCII Art Creation (Moved inside DOMContentLoaded) ----
         const asciiArt = `⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠈⠉⢻⣿⣿⡿⠉⠁⠀⠀⠀⢀⣤⣶⠿⠛⠻⢷⣦⣄⡀⠀⠀⠀⠀⠀⠀⠉⠹⣿⣿⣿⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⣰⡿⡀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⢸⣿⣿⡇⠀⠀⠀⠀⣠⣿⣿⠃⠀⠀⠀⠀⠻⣿⣧⡀⠀⠀⠀⠀⠀⠀⠠⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣻⣇⠀⠀⠀⠀⠀⠀⠀⠀
@@ -581,40 +602,39 @@
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢑⠜⠀⠠⡄⠀⠑⠌⠀⠠⠤⠀⡨⢁⠄⡽⠝⠁⡳⢻⡄⡒⢡⠂⢀⠁⡇⣟⢺⡖⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠁⠈⠀⠈⠀⠀⠀⠉⠀⠈⠀⠁⠁⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀`;
 
-        // Estimate art dimensions roughly (adjust if needed)
-        const artLines = asciiArt.split("\n");
-        const artHeightApprox = artLines.length * 7 * 0.8; // lines * fontSize * lineHeight
-        const artWidthApprox =
-          artLines.reduce((max, line) => Math.max(max, line.length), 0) *
-          12 *
-          0.6; // maxChars * fontSize * fontWidthRatio
+        // Only create ASCII art if not on small screens (matches CSS media query)
+        if (window.matchMedia("(min-width: 769px)").matches) {
+            const artLines = asciiArt.split("\n");
+            const artHeightApprox = artLines.length * 12 * 0.8; // Adjusted calculation
+            const artWidthApprox = artLines.reduce((max, line) => Math.max(max, line.length), 0) * 12 * 0.6; // Adjusted
 
-        const numInstances = Math.floor(Math.random() * 4) + 5; // Random number between 2 and 5
+            const numInstances = Math.floor(Math.random() * 3) + 3; // 3 to 5 instances
 
-        for (let i = 0; i < numInstances; i++) {
-          const preElement = document.createElement("pre");
-          preElement.classList.add("static-ascii-art");
-          preElement.textContent = asciiArt;
+            for (let i = 0; i < numInstances; i++) {
+                const preElement = document.createElement("pre");
+                preElement.classList.add("static-ascii-art");
+                preElement.textContent = asciiArt;
 
-          // Calculate random position, trying not to place it completely off-screen
-          // Allow some overlap off the edges for a more natural background feel
-          const maxTop = window.innerHeight - artHeightApprox * 0.3; // Allow bottom 30% to be off screen
-          const maxLeft = window.innerWidth - artWidthApprox * 0.3; // Allow right 30% to be off screen
-          const minTop = -artHeightApprox * 0.7; // Allow top 70% to be off screen
-          const minLeft = -artWidthApprox * 0.7; // Allow left 70% to be off screen
+                const maxTop = window.innerHeight - artHeightApprox * 0.3;
+                const maxLeft = window.innerWidth - artWidthApprox * 0.3;
+                const minTop = -artHeightApprox * 0.7;
+                const minLeft = -artWidthApprox * 0.7;
 
-          const randomTop = Math.random() * (maxTop - minTop) + minTop;
-          const randomLeft = Math.random() * (maxLeft - minLeft) + minLeft;
+                const randomTop = Math.random() * (maxTop - minTop) + minTop;
+                const randomLeft = Math.random() * (maxLeft - minLeft) + minLeft;
 
-          preElement.style.top = `${randomTop}px`;
-          preElement.style.left = `${randomLeft}px`;
-          // Optional: Add random slight rotation or opacity variation
-          // preElement.style.transform = `rotate(${Math.random() * 4 - 2}deg)`;
-          // preElement.style.opacity = Math.random() * 0.05 + 0.1; // Random opacity between 0.1 and 0.15
+                preElement.style.top = `${randomTop}px`;
+                preElement.style.left = `${randomLeft}px`;
+                document.body.appendChild(preElement);
 
-          document.body.appendChild(preElement);
-        }
-      });
+                 // Fade in the newly added element
+                 setTimeout(() => {
+                     preElement.style.opacity = '1';
+                 }, 50 + i * 100); // Stagger fade-in slightly
+            }
+        } // end check for screen size
+
+      }); // End DOMContentLoaded
     </script>
   </body>
 </html>

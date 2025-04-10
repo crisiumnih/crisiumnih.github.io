@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Ultra&display=swap" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Ultra&display=swap" rel="stylesheet">
 
   <title>blogs ~ SBR</title>
   <style>
@@ -146,6 +146,48 @@
       background-color: #8A2BE2; /* Purple background on hover */
       color: #F5ECCE; /* Light text on hover */
       text-decoration: none;
+    }
+
+    /* Responsive adjustments for smaller screens */
+    @media (max-width: 768px) {
+        .container {
+            max-width: 95%; /* Increase width */
+            margin: 20px auto; /* Reduce vertical margin */
+            padding: 15px; /* Slightly reduce padding */
+        }
+        h1 {
+            font-size: 2.5em; /* Reduce heading size */
+        }
+        h1::after {
+            font-size: 0.35em;
+            bottom: -12px;
+        }
+        hr {
+            margin-top: 25px;
+            margin-bottom: 30px;
+        }
+        .blog-card {
+             padding: 20px;
+             margin-bottom: 25px;
+             box-shadow: 4px 4px 0px #00BFFF;
+        }
+         .blog-card:hover {
+             box-shadow: 6px 6px 0px #FF66CC; /* Adjust hover shadow */
+         }
+        .blog-card h2 a {
+            font-size: 1.5em; /* Reduce card title size */
+        }
+        .blog-card p {
+            font-size: 1em;
+        }
+        .blog-card .links a {
+            font-size: 1em;
+        }
+        .back-link {
+            margin-top: 30px;
+            font-size: 1.1em;
+            padding: 6px 12px;
+        }
     }
   </style>
 </head>

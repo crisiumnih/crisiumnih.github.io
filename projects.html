@@ -1,3 +1,6 @@
+================================================
+FILE: projects.html
+================================================
 <!DOCTYPE html>
 <html lang="en">
 
@@ -81,20 +84,23 @@
       margin-top: 0;
       font-size: 1.8em;
       text-shadow: 1px 1px 0px #4A2E20; /* Subtle dark shadow */
+      margin-bottom: 10px; /* Added space below title */
     }
 
     .project-card p {
       line-height: 1.6;
       font-size: 1.1em;
       color: #4A2E20; /* Dark Brown text */
+      margin-bottom: 15px; /* Added space below description */
     }
 
     .project-card .links {
       display: flex;
+      flex-wrap: wrap; /* Allow links to wrap on small screens */
       justify-content: flex-end; /* Align links to the right */
       align-items: center;
       margin-top: 15px;
-      gap: 20px; /* Space between links */
+      gap: 15px 20px; /* Vertical and horizontal gap */
     }
 
     .project-card a {
@@ -105,6 +111,7 @@
       font-weight: bold;
       font-size: 1.1em;
       transition: color 0.2s;
+      white-space: nowrap; /* Prevent link text wrapping */
     }
 
     .project-card a:hover {
@@ -138,6 +145,52 @@
       background-color: #FF66CC; /* Pink background on hover */
       color: #F5ECCE; /* Light text on hover */
       text-decoration: none;
+    }
+
+    /* Responsive adjustments for smaller screens */
+    @media (max-width: 768px) {
+        .container {
+            max-width: 95%; /* Increase width */
+            margin: 20px auto; /* Reduce vertical margin */
+            padding: 15px; /* Slightly reduce padding */
+        }
+        h1 {
+            font-size: 2.5em; /* Reduce heading size */
+        }
+        h1::after {
+            font-size: 0.35em;
+            bottom: -12px;
+        }
+        hr {
+            margin-top: 25px;
+            margin-bottom: 30px;
+        }
+        .project-card {
+             padding: 20px;
+             margin-bottom: 25px;
+             box-shadow: 4px 4px 0px #8A2BE2; /* Reduce shadow */
+        }
+         .project-card:hover {
+             box-shadow: 6px 6px 0px #A3E000; /* Adjust hover shadow */
+         }
+        .project-card h2 {
+            font-size: 1.5em; /* Reduce card title size */
+        }
+        .project-card p {
+            font-size: 1em;
+        }
+        .project-card .links {
+            justify-content: flex-start; /* Align links left on mobile */
+            gap: 10px 15px;
+        }
+        .project-card a {
+            font-size: 1em;
+        }
+        .back-link {
+            margin-top: 30px;
+            font-size: 1.1em;
+            padding: 6px 12px;
+        }
     }
   </style>
 </head>

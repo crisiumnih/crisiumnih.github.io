@@ -16,13 +16,13 @@
             color: #4A2E20; /* Dark Brown Text */
             font-family: 'Fira Code', monospace; /* Consistent font */
             margin: 0;
-            padding: 20px;
+            padding: 0; /* Remove body padding, manage spacing with container */
         }
 
         .container {
             max-width: 75%;
-            margin: 0 auto;
-            padding: 20px;
+            margin: 40px auto; /* Vertical margin, auto horizontal for centering */
+            padding: 20px; /* Internal padding */
             text-align: center;
         }
 
@@ -34,7 +34,7 @@
         }
 
         .header-image {
-            max-width: 70%;
+            max-width: 70%; /* Default max width */
             height: auto;
             display: inline-block;
             border: 3px solid #4A2E20;
@@ -117,6 +117,7 @@
             font-weight: 600; /* Bolder link */
             font-size: 1.1em;
             transition: color 0.2s;
+            word-break: break-word; /* Prevent overflow */
         }
         .projects-link:hover {
             color: #E6007A; /* Darker Pink on hover */
@@ -125,18 +126,22 @@
 
         .socials {
             margin-top: 10px;
+            display: flex; /* Use flexbox for wrapping */
+            flex-wrap: wrap; /* Allow items to wrap */
+            gap: 10px 15px; /* Spacing between items (row-gap column-gap) */
+            justify-content: flex-start; /* Align items to the start */
         }
         .socials a {
             color: #3f391a;
             text-decoration: none;
-            margin: 0 10px;
+            /* margin: 0 10px; - Remove fixed margin, use gap */
             font-weight: 600; /* Bolder social links */
             font-size: 1.1em;
             transition: color 0.2s;
+            white-space: nowrap; /* Prevent link text from breaking */
         }
-         .socials a:first-child {
-             margin-left: 0;
-         }
+         /* .socials a:first-child {
+             margin-left: 0; - Remove } */
         .socials a:hover {
              color: #E6007A;
         }
@@ -147,7 +152,51 @@
             margin-left: -2px;
             filter: contrast(1.1);
         }
-        
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 768px) {
+            body {
+                 padding: 0 5px; /* Add small padding to body on mobile */
+            }
+            .container {
+                max-width: 100%; /* Let container fill available width */
+                margin: 20px auto; /* Adjust vertical margin */
+                padding: 10px; /* Adjust internal padding */
+            }
+            .header-image {
+                max-width: 85%; /* Allow image to be slightly larger */
+                box-shadow: 3px 3px 0px #A3E000; /* Reduce shadow */
+            }
+             .header-image-container {
+                 margin-bottom: 20px;
+                 padding-bottom: 15px;
+             }
+            .main-content-area {
+                padding: 20px 15px; /* Reduce padding */
+                margin-top: 20px;
+                box-shadow: 5px 5px 0px #FF66CC; /* Reduce shadow */
+            }
+            .section-title {
+                font-size: 1.5em; /* Reduce title size */
+            }
+            .section-content, .yap {
+                font-size: 1em; /* Adjust font size */
+                line-height: 1.6;
+            }
+            .link-label {
+                font-size: 1.1em;
+            }
+            .projects-link, .socials a {
+                font-size: 1em;
+            }
+             .links-list li {
+                 margin-bottom: 15px;
+             }
+            .socials {
+                gap: 5px 10px; /* Reduce gap */
+                justify-content: center; /* Center socials on mobile */
+            }
+        }
 
     </style>
 </head>
@@ -155,8 +204,9 @@
 <body>
     <div class="container">
         <div class="header-image-container">
-            <img src="blogs/assests/home.png" alt="Steel Ball Run Vol. 1 Cover Art" class="header-image" style="width: 12%;">
-        </div>        
+             <!-- Reduced image size inline style for better control across devices -->
+             <img src="blogs/assests/home.png" alt="Steel Ball Run Vol. 1 Cover Art" class="header-image" style="width: 10%; min-width: 80px;">
+        </div>
 
         <div class="main-content-area">
 
